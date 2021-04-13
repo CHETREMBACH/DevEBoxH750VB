@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|VisualGDB">
+      <Configuration>Debug</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|VisualGDB">
+      <Configuration>Release</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{C0E0626D-0B33-4BCC-AB25-1923600B4ECC}</ProjectGuid>
+    <BSP_ID>com.visualgdb.bsp.in-place</BSP_ID>
+    <BSP_VERSION>1.0</BSP_VERSION>
+    <InPlaceBSPSubdir>BSP</InPlaceBSPSubdir>
+    <ProjectName>h750vb</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <MCUPropertyListFile>$(ProjectDir)stm32.props</MCUPropertyListFile>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <MCUPropertyListFile>$(ProjectDir)stm32.props</MCUPropertyListFile>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <GNUConfigurationType>Debug</GNUConfigurationType>
+    <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+    <ToolchainVersion>9.3.1/9.2.0/r2</ToolchainVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+    <ToolchainVersion>9.3.1/9.2.0/r2</ToolchainVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../Core/Inc;../../Libraries/CMSIS/Core/Include;../../Libraries/CMSIS/Device/ST/STM32H7xx/Include;../../Libraries/FreeRTOS/Source/include;../../Libraries/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1;../../Libraries/STM32H7xx_HAL_Driver/Inc;../../Utilities\cmd_trmnl;../../Utilities\uart_dbg;../../Utilities/quadspi;../../Utilities/EEPROM_Emul/Core;../../Utilities/EEPROM_Emul/Porting/W25Q64JVS;../../Config;../../Utilities/CRC;../../Libraries/STM32H7xx_HAL_Driver/Src;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>flash_layout;HSE_VALUE=25000000;STM32H750xx;USE_FREERTOS;DEBUG=1;USE_FULL_LL_DRIVER;DBG_UART_ENABLE=1;DBG_PIN_ENABLE=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions />
+      <CLanguageStandard>C17</CLanguageStandard>
+      <CPPLanguageStandard>CPP1Z</CPPLanguageStandard>
+    </ClCompile>
+    <Link>
+      <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <AdditionalOptions />
+      <LinkerScript>../../Config/STM32H750VB_flash.lds</LinkerScript>
+      <GenerateMapFile>false</GenerateMapFile>
+      <PreprocessLinkerScript>false</PreprocessLinkerScript>
+      <PrintMemoryUsage>true</PrintMemoryUsage>
+      <InheritPreprocessorParametersForLinkerScript>false</InheritPreprocessorParametersForLinkerScript>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\Core\Inc;..\..\Drivers\CMSIS\Device\ST\STM32H7xx\Include;..\..\Drivers\STM32H7xx_HAL_Driver\Inc;..\..\Middlewares\Third_Party\FreeRTOS\Source\include;..\..\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy;..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\GCC\ARM_CM4F;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>flash_layout;STM32H743xx;USE_FREERTOS;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions />
+      <CLanguageStandard />
+      <CPPLanguageStandard />
+    </ClCompile>
+    <Link>
+      <LibrarySearchDirectories>%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <AdditionalLinkerInputs>%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <AdditionalOptions />
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Config\startup_stm32h750xx.c" />
+    <ClCompile Include="..\..\Core\Scr\hooks.c" />
+    <ClCompile Include="..\..\Core\Scr\main.c" />
+    <ClCompile Include="..\..\Core\Scr\stm32h7xx_hal_msp.c" />
+    <ClCompile Include="..\..\Core\Scr\stm32h7xx_it.c" />
+    <ClCompile Include="..\..\Core\Scr\system_stm32h7xx.c" />
+    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\croutine.c" />
+    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\event_groups.c" />
+    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\list.c" />
+    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\portable\GCC\ARM_CM7\r0p1\port.c" />
+    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\portable\MemMang\heap_2.c" />
+    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\queue.c" />
+    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\stream_buffer.c" />
+    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\tasks.c" />
+    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\timers.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_cec.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_comp.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_cortex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_crc.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_crc_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_cryp.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_cryp_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dac.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dac_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dcmi.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dfsdm.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dfsdm_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma2d.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dsi.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dts.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_eth.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_eth_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_exti.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_fdcan.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_gfxmmu.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_gpio.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_hash.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_hash_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_hcd.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_hrtim.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_hsem.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2s.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2s_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_irda.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_iwdg.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_jpeg.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_lptim.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_ltdc.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_ltdc_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_mdios.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_mdma.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_mmc.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_mmc_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_nand.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_nor.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_opamp.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_opamp_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_ospi.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_otfdec.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pcd.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pcd_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pssi.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_qspi.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_ramecc.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rng.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rng_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rtc.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rtc_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_sai.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_sai_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_sd.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_sdram.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_sd_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_smartcard.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_smartcard_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_smbus.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spdifrx.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_sram.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_swpmi.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart_ex.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_wwdg.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_adc.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_bdma.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_comp.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_crc.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_crs.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_dac.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_delayblock.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_dma.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_dma2d.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_exti.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_fmc.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_gpio.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_hrtim.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_i2c.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_lptim.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_lpuart.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_mdma.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_opamp.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_pwr.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_rcc.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_rng.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_rtc.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_sdmmc.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_spi.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_swpmi.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_tim.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_usart.c" />
+    <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_usb.c" />
+    <ClCompile Include="..\..\Utilities\cmd_trmnl\cmd_freertos_cntrl.c" />
+    <ClCompile Include="..\..\Utilities\cmd_trmnl\cmd_hdl.c" />
+    <ClCompile Include="..\..\Utilities\cmd_trmnl\cmd_hlp.c" />
+    <ClCompile Include="..\..\Utilities\cmd_trmnl\cmd_process.c" />
+    <ClCompile Include="..\..\Utilities\CRC\CRC16.c" />
+    <ClCompile Include="..\..\Utilities\EEPROM_Emul\Core\eeprom_emul.c" />
+    <ClCompile Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\flash_interface.c" />
+    <ClCompile Include="..\..\Utilities\quadspi\cmd_qspi_flash.c" />
+    <ClCompile Include="..\..\Utilities\quadspi\drv_qspi_w25q64.c" />
+    <ClCompile Include="..\..\Utilities\quadspi\task_qspi_flash.c" />
+    <ClCompile Include="..\..\Utilities\quadspi\test_qspi_flash.c" />
+    <ClCompile Include="..\..\Utilities\quadspi\w25q64jvs.c" />
+    <ClCompile Include="..\..\Utilities\uart_dbg\pin_dbg.c" />
+    <ClCompile Include="..\..\Utilities\uart_dbg\printf_dbg.c" />
+    <ClCompile Include="..\..\Utilities\uart_dbg\uart_dbg.c" />
+    <ClInclude Include="..\..\Config\FreeRTOSConfig.h" />
+    <ClInclude Include="..\..\Config\stm32h7xx_hal_conf.h" />
+    <ClInclude Include="..\..\Core\Inc\main.h" />
+    <ClInclude Include="..\..\Core\Inc\stm32h7xx_it.h" />
+    <ClInclude Include="..\..\Libraries\CMSIS\Core\Include\cmsis_armcc.h" />
+    <ClInclude Include="..\..\Libraries\CMSIS\Core\Include\cmsis_armclang.h" />
+    <ClInclude Include="..\..\Libraries\CMSIS\Core\Include\cmsis_compiler.h" />
+    <ClInclude Include="..\..\Libraries\CMSIS\Core\Include\cmsis_gcc.h" />
+    <ClInclude Include="..\..\Libraries\CMSIS\Core\Include\cmsis_version.h" />
+    <ClInclude Include="..\..\Libraries\CMSIS\Core\Include\core_cm7.h" />
+    <ClInclude Include="..\..\Libraries\CMSIS\Core\Include\mpu_armv7.h" />
+    <ClInclude Include="..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h" />
+    <ClInclude Include="..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\croutine.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\deprecated_definitions.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\event_groups.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\FreeRTOS.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\list.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\message_buffer.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\mpu_prototypes.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\mpu_wrappers.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\portable.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\projdefs.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\queue.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\semphr.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\StackMacros.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\stack_macros.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\stream_buffer.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\task.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\timers.h" />
+    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\portable\GCC\ARM_CM7\r0p1\portmacro.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_adc.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_adc_ex.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_cec.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_comp.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_conf.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_cortex.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_crc.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_crc_ex.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_cryp.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_cryp_ex.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dac.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dac_ex.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dcmi.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dfsdm.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dfsdm_ex.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dma.h" />
+    <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32_assert_template.h" />
+    <ClInclude Include="..\..\Utilities\cmd_trmnl\cmd_freertos_cntrl.h" />
+    <ClInclude Include="..\..\Utilities\cmd_trmnl\cmd_hdl.h" />
+    <ClInclude Include="..\..\Utilities\cmd_trmnl\cmd_hlp.h" />
+    <ClInclude Include="..\..\Utilities\cmd_trmnl\cmd_process.h" />
+    <ClInclude Include="..\..\Utilities\CRC\CRC16.h" />
+    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Core\eeprom_emul.h" />
+    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Core\eeprom_emul_types.h" />
+    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\eeprom_emul_conf.h" />
+    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\flash_interface.h" />
+    <ClInclude Include="..\..\Utilities\quadspi\cmd_qspi_flash.h" />
+    <ClInclude Include="..\..\Utilities\quadspi\drv_qspi_w25q64.h" />
+    <ClInclude Include="..\..\Utilities\quadspi\task_qspi_flash.h" />
+    <ClInclude Include="..\..\Utilities\quadspi\test_qspi_flash.h" />
+    <ClInclude Include="..\..\Utilities\quadspi\w25q64jvs.h" />
+    <ClInclude Include="..\..\Utilities\uart_dbg\pin_dbg.h" />
+    <ClInclude Include="..\..\Utilities\uart_dbg\printf_dbg.h" />
+    <ClInclude Include="..\..\Utilities\uart_dbg\uart_dbg.h" />
+    <None Include="h750vb-Debug.vgdbsettings" />
+    <None Include="h750vb-Release.vgdbsettings" />
+    <None Include="stm32.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <LinkerScript Include="..\..\Config\STM32H750VB_flash.lds" />
+  </ItemGroup>
+</Project>

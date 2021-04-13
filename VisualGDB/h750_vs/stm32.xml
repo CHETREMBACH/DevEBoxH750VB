@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<EmbeddedProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+  <ToolchainVersion>
+    <GCC>9.3.1</GCC>
+    <GDB>9.2.0</GDB>
+    <Revision>2</Revision>
+  </ToolchainVersion>
+  <BspID>com.visualgdb.bsp.in-place</BspID>
+  <BspVersion>1.0</BspVersion>
+  <McuID>STM32H743ZI</McuID>
+  <BSPSubdirectory>BSP</BSPSubdirectory>
+  <MCUDefinitionFile>..\..\..\Config\stm32h750xx.xml</MCUDefinitionFile>
+  <MCUProperties>
+    <Entries />
+  </MCUProperties>
+  <BSPSourceFolderName>Device-specific files</BSPSourceFolderName>
+  <InPlaceMCU>
+    <ID>STM32H743ZI</ID>
+    <UserFriendlyName>STM32H743ZI</UserFriendlyName>
+    <CompilationFlags>
+      <PreprocessorMacros>
+        <string>ARM_MATH_CM7</string>
+        <string>flash_layout</string>
+        <string>CORE_CM7</string>
+        <string>STM32H750VB</string>
+      </PreprocessorMacros>
+      <IncludeDirectories>
+        <string>.</string>
+      </IncludeDirectories>
+      <LDFLAGS>--specs=nano.specs -u _printf_float -u _scanf_float --specs=nosys.specs</LDFLAGS>
+      <LinkerScript />
+      <COMMONFLAGS>-mcpu=cortex-m7 -mthumb -mfpu=fpv5-d16 -mfloat-abi=hard</COMMONFLAGS>
+      <EnableLinkerGroups>true</EnableLinkerGroups>
+    </CompilationFlags>
+    <AdditionalHeaderFiles />
+    <MemoryMap>
+      <Memories>
+        <MCUMemory>
+          <Name>FLASH</Name>
+          <Address>134217728</Address>
+          <Size>2097152</Size>
+          <AddressSpaceSize>0</AddressSpaceSize>
+          <Flags>IsDefaultFLASH</Flags>
+        </MCUMemory>
+        <MCUMemory>
+          <Name>DTCMRAM</Name>
+          <Address>536870912</Address>
+          <Size>131072</Size>
+          <AddressSpaceSize>0</AddressSpaceSize>
+          <Flags>None</Flags>
+        </MCUMemory>
+        <MCUMemory>
+          <Name>RAM_D1</Name>
+          <Address>603979776</Address>
+          <Size>524288</Size>
+          <AddressSpaceSize>0</AddressSpaceSize>
+          <Flags>None</Flags>
+        </MCUMemory>
+        <MCUMemory>
+          <Name>RAM_D2</Name>
+          <Address>805306368</Address>
+          <Size>294912</Size>
+          <AddressSpaceSize>0</AddressSpaceSize>
+          <Flags>None</Flags>
+        </MCUMemory>
+        <MCUMemory>
+          <Name>RAM_D3</Name>
+          <Address>939524096</Address>
+          <Size>65536</Size>
+          <AddressSpaceSize>0</AddressSpaceSize>
+          <Flags>None</Flags>
+        </MCUMemory>
+        <MCUMemory>
+          <Name>ITCMRAM</Name>
+          <Address>0</Address>
+          <Size>65536</Size>
+          <AddressSpaceSize>0</AddressSpaceSize>
+          <Flags>None</Flags>
+        </MCUMemory>
+      </Memories>
+    </MemoryMap>
+    <AdditionalSystemVars>
+      <SysVarEntry>
+        <Key>com.sysprogs.bspoptions.arm.core</Key>
+        <Value>M7</Value>
+      </SysVarEntry>
+      <SysVarEntry>
+        <Key>com.sysprogs.freertos.default_port</Key>
+        <Value>ARM_CM7/r0p1</Value>
+      </SysVarEntry>
+      <SysVarEntry>
+        <Key>com.sysprogs.stm32.hal_header_prefix</Key>
+        <Value>stm32h7xx</Value>
+      </SysVarEntry>
+      <SysVarEntry>
+        <Key>com.sysprogs.bspoptions.stm32.hal_system_file</Key>
+        <Value>STM32H7xxxx/CMSIS_HAL/Device/ST/STM32H7xx/Source/Templates/system_stm32h7xx.c</Value>
+      </SysVarEntry>
+      <SysVarEntry>
+        <Key>com.sysprogs.bspoptions.stm32.hal_config_template_file</Key>
+        <Value>STM32H7xxxx/STM32H7xx_HAL_Driver/Inc/STM32H7xx_hal_conf_template.h</Value>
+      </SysVarEntry>
+      <SysVarEntry>
+        <Key>com.sysprogs.stm32.hal_device_family</Key>
+        <Value>STM32H743xx</Value>
+      </SysVarEntry>
+    </AdditionalSystemVars>
+    <ConfigurableProperties>
+      <PropertyGroups>
+        <PropertyGroup>
+          <Properties>
+            <PropertyEntry xsi:type="Enumerated">
+              <Name>Execute from</Name>
+              <UniqueID>com.sysprogs.bspoptions.primary_memory</UniqueID>
+              <OmitPrefixIfEmpty>false</OmitPrefixIfEmpty>
+              <SuggestionList>
+                <Suggestion>
+                  <UserFriendlyName>FLASH</UserFriendlyName>
+                  <InternalValue>flash</InternalValue>
+                </Suggestion>
+                <Suggestion>
+                  <UserFriendlyName>SRAM</UserFriendlyName>
+                  <InternalValue>sram</InternalValue>
+                </Suggestion>
+              </SuggestionList>
+              <DefaultEntryIndex>0</DefaultEntryIndex>
+              <AllowFreeEntry>false</AllowFreeEntry>
+            </PropertyEntry>
+            <PropertyEntry xsi:type="Enumerated">
+              <Name>Floating point support</Name>
+              <UniqueID>com.sysprogs.bspoptions.arm.floatmode</UniqueID>
+              <OmitPrefixIfEmpty>false</OmitPrefixIfEmpty>
+              <SuggestionList>
+                <Suggestion>
+                  <UserFriendlyName>Software</UserFriendlyName>
+                  <InternalValue>-mfloat-abi=soft</InternalValue>
+                </Suggestion>
+                <Suggestion>
+                  <UserFriendlyName>Hardware</UserFriendlyName>
+                  <InternalValue>-mfloat-abi=hard</InternalValue>
+                </Suggestion>
+                <Suggestion>
+                  <UserFriendlyName>Unspecified</UserFriendlyName>
+                  <InternalValue />
+                </Suggestion>
+              </SuggestionList>
+              <DefaultEntryIndex>1</DefaultEntryIndex>
+              <AllowFreeEntry>false</AllowFreeEntry>
+            </PropertyEntry>
+            <PropertyEntry xsi:type="Boolean">
+              <Name>Exclude the startup file from project</Name>
+              <UniqueID>com.sysprogs.mcuoptions.ignore_startup_file</UniqueID>
+              <OmitPrefixIfEmpty>false</OmitPrefixIfEmpty>
+              <DefaultValue>false</DefaultValue>
+              <ValueForTrue>1</ValueForTrue>
+            </PropertyEntry>
+            <PropertyEntry xsi:type="Enumerated">
+              <Name>C Library Type</Name>
+              <UniqueID>com.sysprogs.toolchainoptions.arm.libctype</UniqueID>
+              <OmitPrefixIfEmpty>false</OmitPrefixIfEmpty>
+              <SuggestionList>
+                <Suggestion>
+                  <UserFriendlyName>Default</UserFriendlyName>
+                  <InternalValue />
+                </Suggestion>
+                <Suggestion>
+                  <UserFriendlyName>Newlib-nano</UserFriendlyName>
+                  <InternalValue>--specs=nano.specs</InternalValue>
+                </Suggestion>
+                <Suggestion>
+                  <UserFriendlyName>Newlib-nano with floating point support in printf()</UserFriendlyName>
+                  <InternalValue>--specs=nano.specs -u _printf_float</InternalValue>
+                </Suggestion>
+                <Suggestion>
+                  <UserFriendlyName>Newlib-nano with floating point support in printf() and scanf()</UserFriendlyName>
+                  <InternalValue>--specs=nano.specs -u _printf_float -u _scanf_float</InternalValue>
+                </Suggestion>
+              </SuggestionList>
+              <DefaultEntryIndex>1</DefaultEntryIndex>
+              <AllowFreeEntry>false</AllowFreeEntry>
+            </PropertyEntry>
+            <PropertyEntry xsi:type="Enumerated">
+              <Name>Implementations for _sbrk(), etc.</Name>
+              <UniqueID>com.sysprogs.toolchainoptions.arm.syscallspecs</UniqueID>
+              <OmitPrefixIfEmpty>false</OmitPrefixIfEmpty>
+              <SuggestionList>
+                <Suggestion>
+                  <UserFriendlyName>None</UserFriendlyName>
+                  <InternalValue />
+                </Suggestion>
+                <Suggestion>
+                  <UserFriendlyName>Minimal (no semihosting)</UserFriendlyName>
+                  <InternalValue>--specs=nosys.specs</InternalValue>
+                </Suggestion>
+                <Suggestion>
+                  <UserFriendlyName>Support semihosting</UserFriendlyName>
+                  <InternalValue>--specs=rdimon.specs</InternalValue>
+                </Suggestion>
+              </SuggestionList>
+              <DefaultEntryIndex>1</DefaultEntryIndex>
+              <AllowFreeEntry>false</AllowFreeEntry>
+            </PropertyEntry>
+          </Properties>
+          <CollapsedByDefault>false</CollapsedByDefault>
+        </PropertyGroup>
+      </PropertyGroups>
+    </ConfigurableProperties>
+    <HierarchicalPath>STM32\STM32H7</HierarchicalPath>
+    <FamilyID>STM32H7</FamilyID>
+    <FLASHSize>2097152</FLASHSize>
+    <RAMSize>131072</RAMSize>
+    <FLASHBase>134217728</FLASHBase>
+    <RAMBase>536870912</RAMBase>
+    <MCUDefinitionFile>..\..\..\Config\stm32h750xx.xml</MCUDefinitionFile>
+    <AdditionalSourcesRequiredForTesting>false</AdditionalSourcesRequiredForTesting>
+  </InPlaceMCU>
+  <MCUMakFile>stm32.mak</MCUMakFile>
+  <ReferencedFrameworks />
+</EmbeddedProfile>
