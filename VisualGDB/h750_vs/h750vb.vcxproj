@@ -212,8 +212,6 @@
     <ClCompile Include="..\..\Utilities\cmd_trmnl\cmd_hlp.c" />
     <ClCompile Include="..\..\Utilities\cmd_trmnl\cmd_process.c" />
     <ClCompile Include="..\..\Utilities\CRC\CRC16.c" />
-    <ClCompile Include="..\..\Utilities\EEPROM_Emul\Core\eeprom_emul.c" />
-    <ClCompile Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\flash_interface.c" />
     <ClCompile Include="..\..\Utilities\quadspi\cmd_qspi_flash.c" />
     <ClCompile Include="..\..\Utilities\quadspi\drv_qspi_w25q64.c" />
     <ClCompile Include="..\..\Utilities\quadspi\task_qspi_flash.c" />
@@ -277,10 +275,6 @@
     <ClInclude Include="..\..\Utilities\cmd_trmnl\cmd_hlp.h" />
     <ClInclude Include="..\..\Utilities\cmd_trmnl\cmd_process.h" />
     <ClInclude Include="..\..\Utilities\CRC\CRC16.h" />
-    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Core\eeprom_emul.h" />
-    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Core\eeprom_emul_types.h" />
-    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\eeprom_emul_conf.h" />
-    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\flash_interface.h" />
     <ClInclude Include="..\..\Utilities\quadspi\cmd_qspi_flash.h" />
     <ClInclude Include="..\..\Utilities\quadspi\drv_qspi_w25q64.h" />
     <ClInclude Include="..\..\Utilities\quadspi\task_qspi_flash.h" />

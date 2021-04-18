@@ -88,20 +88,8 @@
     <Filter Include="Utilites\quadspi">
       <UniqueIdentifier>{25464811-34ad-465e-bc3c-9c389ce92da0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utilites\EEPROM_Emul">
-      <UniqueIdentifier>{7b6bb156-ee1c-4ca8-a24d-f95fbf73d4bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utilites\EEPROM_Emul\Porting">
-      <UniqueIdentifier>{519b36da-3485-465e-9dad-cec8fb3bbdca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utilites\EEPROM_Emul\Core">
-      <UniqueIdentifier>{45c061f7-0539-4db8-af53-612753d26043}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Utilites\CRC">
       <UniqueIdentifier>{63c280af-a00b-44a4-91a5-535fcf112969}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utilites\EEPROM_Emul\Porting\W25Q64JVS">
-      <UniqueIdentifier>{b2639ea7-4f76-47f9-900e-7d510b63b6a0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -314,20 +302,8 @@
     <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_conf.h">
       <Filter>Libraries\STM32F4xx_HAL_Driver\Inc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Core\eeprom_emul.h">
-      <Filter>Utilites\EEPROM_Emul\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Core\eeprom_emul_types.h">
-      <Filter>Utilites\EEPROM_Emul\Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Utilities\CRC\CRC16.h">
       <Filter>Utilites\CRC</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\eeprom_emul_conf.h">
-      <Filter>Utilites\EEPROM_Emul\Porting\W25Q64JVS</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\flash_interface.h">
-      <Filter>Utilites\EEPROM_Emul\Porting\W25Q64JVS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -736,17 +712,11 @@
     <ClCompile Include="..\..\Utilities\quadspi\w25q64jvs.c">
       <Filter>Utilites\quadspi</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Utilities\EEPROM_Emul\Core\eeprom_emul.c">
-      <Filter>Utilites\EEPROM_Emul\Core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Utilities\CRC\CRC16.c">
       <Filter>Utilites\CRC</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Config\startup_stm32h750xx.c">
       <Filter>Config</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\flash_interface.c">
-      <Filter>Utilites\EEPROM_Emul\Porting\W25Q64JVS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
