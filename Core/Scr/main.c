@@ -21,6 +21,7 @@
 #include "pin_dbg.h"
 #include "cmd_process.h"
 #include "task_qspi_flash.h"
+#include "usb_device.h"
 
 volatile const char __version__[] = "H750VB";    
 volatile const char __date__[] = __DATE__;
@@ -41,6 +42,8 @@ void system_thread(void *arg)
 	/*Инициализация аппаратной части отладки */
     hal_debug_uart_init();
 	hal_debug_pin_init();
+	
+	MX_USB_DEVICE_Init();
 	
 	// Информационная шапка программы
 	printf("______________________________________________\r\n");

@@ -29,16 +29,25 @@ void SystemClock_Config(void)
 	RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = { 0 };
 
 	/* GPIO Ports Clock Enable */
-	__HAL_RCC_GPIOH_CLK_ENABLE();
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_GPIOB_CLK_ENABLE();	
+	__HAL_RCC_GPIOC_CLK_ENABLE();	
+	__HAL_RCC_GPIOD_CLK_ENABLE();	
+	__HAL_RCC_GPIOE_CLK_ENABLE();
+	__HAL_RCC_GPIOF_CLK_ENABLE();	
+	__HAL_RCC_GPIOH_CLK_ENABLE();	
 	
 	/** Supply configuration update enable
-  */
+	*/
 	HAL_PWREx_ConfigSupply(PWR_LDO_SUPPLY);
 	/** Configure the main internal regulator output voltage
 	*/
 	__HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
 	while (!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY)) {}
+	/** Macro to configure the PLL clock source
+	*/
+	__HAL_RCC_PLL_PLLSOURCE_CONFIG(RCC_PLLSOURCE_HSE);
 	/** Initializes the RCC Oscillators according to the specified parameters
 	* in the RCC_OscInitTypeDef structure.
 	*/
@@ -75,6 +84,7 @@ void SystemClock_Config(void)
 	{
 		Error_Handler();
 	}
+	
 	
 	PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_USART3 | RCC_PERIPHCLK_USB;
 	PeriphClkInitStruct.PLL3.PLL3M = 1;

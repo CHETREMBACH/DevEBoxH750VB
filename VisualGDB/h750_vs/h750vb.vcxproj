@@ -42,7 +42,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../../Core/Inc;../../Libraries/CMSIS/Core/Include;../../Libraries/CMSIS/Device/ST/STM32H7xx/Include;../../Libraries/FreeRTOS/Source/include;../../Libraries/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1;../../Libraries/STM32H7xx_HAL_Driver/Inc;../../Utilities\cmd_trmnl;../../Utilities\uart_dbg;../../Utilities/quadspi;../../Utilities/EEPROM_Emul/Core;../../Utilities/EEPROM_Emul/Porting/W25Q64JVS;../../Config;../../Utilities/CRC;../../Libraries/STM32H7xx_HAL_Driver/Src;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Core/Inc;../../Libraries/CMSIS/Core/Include;../../Libraries/CMSIS/Device/ST/STM32H7xx/Include;../../Libraries/FreeRTOS/Source/include;../../Libraries/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1;../../Libraries/STM32H7xx_HAL_Driver/Inc;../../Utilities\cmd_trmnl;../../Utilities\uart_dbg;../../Utilities/quadspi;../../Utilities/EEPROM_Emul/Core;../../Utilities/EEPROM_Emul/Porting/W25Q64JVS;../../Config;../../Utilities/CRC;../../Libraries/STM32H7xx_HAL_Driver/Src;../../Libraries/STM32_USB_Device_Library/Class/CDC/Inc;../../Libraries/STM32_USB_Device_Library/Core/Inc;../../Utilities/USB_DEVICE/App;../../Utilities/USB_DEVICE/Target;;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>flash_layout;HSE_VALUE=25000000;STM32H750xx;USE_FREERTOS;DEBUG=1;USE_FULL_LL_DRIVER;DBG_UART_ENABLE=1;DBG_PIN_ENABLE=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard>C17</CLanguageStandard>
@@ -207,6 +207,10 @@
     <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_tim.c" />
     <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_usart.c" />
     <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_usb.c" />
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c" />
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Core\Src\usbd_core.c" />
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Core\Src\usbd_ctlreq.c" />
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c" />
     <ClCompile Include="..\..\Utilities\cmd_trmnl\cmd_freertos_cntrl.c" />
     <ClCompile Include="..\..\Utilities\cmd_trmnl\cmd_hdl.c" />
     <ClCompile Include="..\..\Utilities\cmd_trmnl\cmd_hlp.c" />
@@ -220,6 +224,10 @@
     <ClCompile Include="..\..\Utilities\uart_dbg\pin_dbg.c" />
     <ClCompile Include="..\..\Utilities\uart_dbg\printf_dbg.c" />
     <ClCompile Include="..\..\Utilities\uart_dbg\uart_dbg.c" />
+    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_cdc_if.c" />
+    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_desc.c" />
+    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usb_device.c" />
+    <ClCompile Include="..\..\Utilities\USB_DEVICE\Target\usbd_conf.c" />
     <ClInclude Include="..\..\Config\FreeRTOSConfig.h" />
     <ClInclude Include="..\..\Config\stm32h7xx_hal_conf.h" />
     <ClInclude Include="..\..\Core\Inc\main.h" />
@@ -270,6 +278,11 @@
     <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dfsdm_ex.h" />
     <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dma.h" />
     <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32_assert_template.h" />
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h" />
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Core\Inc\usbd_core.h" />
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h" />
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Core\Inc\usbd_def.h" />
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h" />
     <ClInclude Include="..\..\Utilities\cmd_trmnl\cmd_freertos_cntrl.h" />
     <ClInclude Include="..\..\Utilities\cmd_trmnl\cmd_hdl.h" />
     <ClInclude Include="..\..\Utilities\cmd_trmnl\cmd_hlp.h" />
@@ -283,6 +296,10 @@
     <ClInclude Include="..\..\Utilities\uart_dbg\pin_dbg.h" />
     <ClInclude Include="..\..\Utilities\uart_dbg\printf_dbg.h" />
     <ClInclude Include="..\..\Utilities\uart_dbg\uart_dbg.h" />
+    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_cdc_if.h" />
+    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_desc.h" />
+    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usb_device.h" />
+    <ClInclude Include="..\..\Utilities\USB_DEVICE\Target\usbd_conf.h" />
     <None Include="h750vb-Debug.vgdbsettings" />
     <None Include="h750vb-Release.vgdbsettings" />
     <None Include="stm32.xml" />
