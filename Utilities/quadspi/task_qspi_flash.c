@@ -31,7 +31,7 @@ TaskHandle_t       qFlashHandleTask;
 TimerHandle_t      qFlashxSoftTimer;            /*  Програмный таймер периодического контроля     */
 TimerHandle_t      qFlashxUpdateTimer;          /*  Програмный таймер контроля ожидания ресурсов  */
 QueueHandle_t      xCmdQueue;
-cmd_box_qflash_t   cmd_box;
+cmd_box_disk_t   cmd_box;
 
 uint8_t data_buf[256];
 
@@ -40,7 +40,7 @@ uint8_t data_buf[256];
  * @param  cmd_box_qflash_t *cmd_box_qflash - указатель на сообщение команды
  * @retval none
  */
-void send_cmd_box(cmd_box_qflash_t *cmd_box_qflash)
+void send_cmd_box(cmd_box_disk_t *cmd_box_qflash)
 {
 	/* Проверка очереди */
 	if (xCmdQueue != NULL)
@@ -62,7 +62,7 @@ void qFlashCntrl(void)
 		if ( xQueueReceive(xCmdQueue, &cmd_box, (TickType_t) 0) == pdPASS)
 		{
 			/* Получена команда */
-			parsing_cmd_box(&cmd_box);
+			parsing_cmd_flash_box(&cmd_box);
 		}
 	}
 }
@@ -102,7 +102,7 @@ void qFlash_Task(void * pvParameters)
 	/* Открытие очереди для получения команд */
 	if (xCmdQueue == NULL)
 	{
-		xCmdQueue = xQueueCreate(10, sizeof(cmd_box_qflash_t));
+		xCmdQueue = xQueueCreate(10, sizeof(cmd_box_disk_t));
 	}
 	
 	/* Открытие таймера периодического контроля  */

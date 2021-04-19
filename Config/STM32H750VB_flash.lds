@@ -164,6 +164,11 @@ SECTIONS
   {
       KEEP(*(.EEPROM_EMUL_ITCMRAM))
   } > DTCMRAMA1
+
+  .RAM_DISK (NOLOAD):
+  {
+      KEEP(*(.RAM_DISK))
+  } > RAM_D1
 }
 
 

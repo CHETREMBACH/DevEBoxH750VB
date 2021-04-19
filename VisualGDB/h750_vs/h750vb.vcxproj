@@ -42,7 +42,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../../Core/Inc;../../Libraries/CMSIS/Core/Include;../../Libraries/CMSIS/Device/ST/STM32H7xx/Include;../../Libraries/FreeRTOS/Source/include;../../Libraries/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1;../../Libraries/STM32H7xx_HAL_Driver/Inc;../../Utilities\cmd_trmnl;../../Utilities\uart_dbg;../../Utilities/quadspi;../../Utilities/EEPROM_Emul/Core;../../Utilities/EEPROM_Emul/Porting/W25Q64JVS;../../Config;../../Utilities/CRC;../../Libraries/STM32H7xx_HAL_Driver/Src;../../Libraries/STM32_USB_Device_Library/Class/CDC/Inc;../../Libraries/STM32_USB_Device_Library/Core/Inc;../../Utilities/USB_DEVICE/App;../../Utilities/USB_DEVICE/Target;;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Core/Inc;../../Libraries/CMSIS/Core/Include;../../Libraries/CMSIS/Device/ST/STM32H7xx/Include;../../Libraries/FreeRTOS/Source/include;../../Libraries/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1;../../Libraries/STM32H7xx_HAL_Driver/Inc;../../Utilities\cmd_trmnl;../../Utilities\uart_dbg;../../Utilities/quadspi;../../Utilities/EEPROM_Emul/Core;../../Utilities/EEPROM_Emul/Porting/W25Q64JVS;../../Config;../../Utilities/CRC;../../Libraries/STM32H7xx_HAL_Driver/Src;../../Libraries/STM32_USB_Device_Library/Class/CDC/Inc;../../Libraries/STM32_USB_Device_Library/Core/Inc;../../Utilities/USB_DEVICE/App;../../Utilities/USB_DEVICE/Target;../../Libraries/STM32_USB_Device_Library/Class/MSC/Inc;../../Utilities/ram_disk_drv;../../Utilities/disk_test_cmd;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>flash_layout;HSE_VALUE=25000000;STM32H750xx;USE_FREERTOS;DEBUG=1;USE_FULL_LL_DRIVER;DBG_UART_ENABLE=1;DBG_PIN_ENABLE=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard>C17</CLanguageStandard>
@@ -208,6 +208,10 @@
     <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_usart.c" />
     <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_usb.c" />
     <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c" />
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Src\usbd_msc.c" />
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Src\usbd_msc_bot.c" />
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Src\usbd_msc_data.c" />
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Src\usbd_msc_scsi.c" />
     <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Core\Src\usbd_core.c" />
     <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Core\Src\usbd_ctlreq.c" />
     <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c" />
@@ -216,16 +220,21 @@
     <ClCompile Include="..\..\Utilities\cmd_trmnl\cmd_hlp.c" />
     <ClCompile Include="..\..\Utilities\cmd_trmnl\cmd_process.c" />
     <ClCompile Include="..\..\Utilities\CRC\CRC16.c" />
+    <ClCompile Include="..\..\Utilities\disk_test_cmd\test_cmd_disk.c" />
     <ClCompile Include="..\..\Utilities\quadspi\cmd_qspi_flash.c" />
     <ClCompile Include="..\..\Utilities\quadspi\drv_qspi_w25q64.c" />
     <ClCompile Include="..\..\Utilities\quadspi\task_qspi_flash.c" />
     <ClCompile Include="..\..\Utilities\quadspi\test_qspi_flash.c" />
     <ClCompile Include="..\..\Utilities\quadspi\w25q64jvs.c" />
+    <ClCompile Include="..\..\Utilities\ram_disk_drv\cmd_ram_disk.c" />
+    <ClCompile Include="..\..\Utilities\ram_disk_drv\ram_disk.c" />
+    <ClCompile Include="..\..\Utilities\ram_disk_drv\test_ram_disk.c" />
     <ClCompile Include="..\..\Utilities\uart_dbg\pin_dbg.c" />
     <ClCompile Include="..\..\Utilities\uart_dbg\printf_dbg.c" />
     <ClCompile Include="..\..\Utilities\uart_dbg\uart_dbg.c" />
     <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_cdc_if.c" />
     <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_desc.c" />
+    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_storage_if.c" />
     <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usb_device.c" />
     <ClCompile Include="..\..\Utilities\USB_DEVICE\Target\usbd_conf.c" />
     <ClInclude Include="..\..\Config\FreeRTOSConfig.h" />
@@ -279,6 +288,10 @@
     <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dma.h" />
     <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32_assert_template.h" />
     <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h" />
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Inc\usbd_msc.h" />
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Inc\usbd_msc_bot.h" />
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Inc\usbd_msc_data.h" />
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Inc\usbd_msc_scsi.h" />
     <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Core\Inc\usbd_core.h" />
     <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h" />
     <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Core\Inc\usbd_def.h" />
@@ -288,16 +301,21 @@
     <ClInclude Include="..\..\Utilities\cmd_trmnl\cmd_hlp.h" />
     <ClInclude Include="..\..\Utilities\cmd_trmnl\cmd_process.h" />
     <ClInclude Include="..\..\Utilities\CRC\CRC16.h" />
+    <ClInclude Include="..\..\Utilities\disk_test_cmd\test_cmd_disk.h" />
     <ClInclude Include="..\..\Utilities\quadspi\cmd_qspi_flash.h" />
     <ClInclude Include="..\..\Utilities\quadspi\drv_qspi_w25q64.h" />
     <ClInclude Include="..\..\Utilities\quadspi\task_qspi_flash.h" />
     <ClInclude Include="..\..\Utilities\quadspi\test_qspi_flash.h" />
     <ClInclude Include="..\..\Utilities\quadspi\w25q64jvs.h" />
+    <ClInclude Include="..\..\Utilities\ram_disk_drv\cmd_ram_disk.h" />
+    <ClInclude Include="..\..\Utilities\ram_disk_drv\ram_disk.h" />
+    <ClInclude Include="..\..\Utilities\ram_disk_drv\test_ram_disk.h" />
     <ClInclude Include="..\..\Utilities\uart_dbg\pin_dbg.h" />
     <ClInclude Include="..\..\Utilities\uart_dbg\printf_dbg.h" />
     <ClInclude Include="..\..\Utilities\uart_dbg\uart_dbg.h" />
     <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_cdc_if.h" />
     <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_desc.h" />
+    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_storage_if.h" />
     <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usb_device.h" />
     <ClInclude Include="..\..\Utilities\USB_DEVICE\Target\usbd_conf.h" />
     <None Include="h750vb-Debug.vgdbsettings" />

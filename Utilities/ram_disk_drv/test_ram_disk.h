@@ -18,13 +18,14 @@
 	 
 /* Includes ------------------------------------------------------------------*/
 #include "test_cmd_disk.h"
-	 
+
 /**
   * @brief  Функция парсинга и отработки команды тестирования spi_flash
-  * @param  cmd_box_qflash_t* cmdbox - указатель на пакет команды
+  * @param  cmd_box_disk_t* cmdbox - указатель на пакет команды
   * @retval None
   */
-void parsing_cmd_flash_box(cmd_box_disk_t* cmdbox);	 
+void parsing_cmd_ram_box(cmd_box_disk_t* cmdbox);	 
+
 	 
 #ifdef __cplusplus
 }

@@ -20,8 +20,8 @@
 #include "printf_dbg.h"
 #include "pin_dbg.h"
 #include "cmd_process.h"
-#include "task_qspi_flash.h"
 #include "usb_device.h"
+#include "task_qspi_flash.h"
 
 volatile const char __version__[] = "H750VB";    
 volatile const char __date__[] = __DATE__;
@@ -42,7 +42,7 @@ void system_thread(void *arg)
 	/*Инициализация аппаратной части отладки */
     hal_debug_uart_init();
 	hal_debug_pin_init();
-	
+
 	MX_USB_DEVICE_Init();
 	
 	// Информационная шапка программы
@@ -53,11 +53,7 @@ void system_thread(void *arg)
 	printf("   TIME: %s \r\n", __time__);
 	printf("   CPU FREQ = %.9lu Hz \r\n", SystemCoreClock);  
 	printf("______________________________________________\r\n"); 
-
-	/* инициализация QSPI FLASH */
-    qFlashInit();
-	
-	
+		
 	//Инициализация задачи диагностического терминала 
 	xTaskCreate(terminal_task, (const char*)"CmdTrmnl", configMINIMAL_STACK_SIZE * 5, NULL, TreadPrioNormal, NULL);
 	

@@ -121,6 +121,21 @@
     <Filter Include="Libraries\STM32_USB_Device_Library\Core\Src">
       <UniqueIdentifier>{7276526b-b8bc-484d-953b-35d2dbaa5f37}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries\STM32_USB_Device_Library\Class\MSC">
+      <UniqueIdentifier>{a5aa2d69-f5c2-43c5-8350-43f0eefa6a71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\STM32_USB_Device_Library\Class\MSC\Src">
+      <UniqueIdentifier>{4a70e22c-016a-48bd-8af6-39467676a396}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\STM32_USB_Device_Library\Class\MSC\Inc">
+      <UniqueIdentifier>{ef5ffb60-bd0b-4a87-8f11-d2c2059fee5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilites\ram_disk_drv">
+      <UniqueIdentifier>{4dff229e-d2aa-4ffd-af2f-48d7d839302f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilites\disk_test_cmd">
+      <UniqueIdentifier>{76f86cfe-6ddb-490e-9a2d-6113d932519e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="h750vb-Debug.vgdbsettings">
@@ -361,6 +376,33 @@
     </ClInclude>
     <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h">
       <Filter>Libraries\STM32_USB_Device_Library\Core\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Inc\usbd_msc.h">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Inc\usbd_msc_bot.h">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Inc\usbd_msc_data.h">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Inc\usbd_msc_scsi.h">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_storage_if.h">
+      <Filter>Utilites\USB_DEVICE\App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Utilities\ram_disk_drv\ram_disk.h">
+      <Filter>Utilites\ram_disk_drv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Utilities\ram_disk_drv\cmd_ram_disk.h">
+      <Filter>Utilites\ram_disk_drv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Utilities\ram_disk_drv\test_ram_disk.h">
+      <Filter>Utilites\ram_disk_drv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Utilities\disk_test_cmd\test_cmd_disk.h">
+      <Filter>Utilites\disk_test_cmd</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -798,6 +840,33 @@
     </ClCompile>
     <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c">
       <Filter>Libraries\STM32_USB_Device_Library\Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Src\usbd_msc.c">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Src\usbd_msc_bot.c">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Src\usbd_msc_data.c">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Src\usbd_msc_scsi.c">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_storage_if.c">
+      <Filter>Utilites\USB_DEVICE\App</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Utilities\ram_disk_drv\ram_disk.c">
+      <Filter>Utilites\ram_disk_drv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Utilities\ram_disk_drv\cmd_ram_disk.c">
+      <Filter>Utilites\ram_disk_drv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Utilities\ram_disk_drv\test_ram_disk.c">
+      <Filter>Utilites\ram_disk_drv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Utilities\disk_test_cmd\test_cmd_disk.c">
+      <Filter>Utilites\disk_test_cmd</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
