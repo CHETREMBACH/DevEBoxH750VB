@@ -64,7 +64,7 @@
   */
 
 /*---------- -----------*/
-#define USBD_MAX_NUM_INTERFACES     1U
+#define USBD_MAX_NUM_INTERFACES     3U
 /*---------- -----------*/
 #define USBD_MAX_NUM_CONFIGURATION     1U
 /*---------- -----------*/
@@ -79,6 +79,7 @@
 #define USBD_SELF_POWERED     1U
 /*---------- -----------*/
 #define MSC_MEDIA_PACKET     4096U
+	 
 
 /****************************************/
 /* #define for FS and HS identification */

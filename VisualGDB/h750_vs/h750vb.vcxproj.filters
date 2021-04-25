@@ -136,6 +136,9 @@
     <Filter Include="Utilites\disk_test_cmd">
       <UniqueIdentifier>{76f86cfe-6ddb-490e-9a2d-6113d932519e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilites\USB_DEVICE\MSC_CDC">
+      <UniqueIdentifier>{c121b7b4-edac-4e49-9e87-e60e456bfb4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="h750vb-Debug.vgdbsettings">
@@ -403,6 +406,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Utilities\disk_test_cmd\test_cmd_disk.h">
       <Filter>Utilites\disk_test_cmd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Utilities\USB_DEVICE\MSC_CDC\usbd_msc_cdc.h">
+      <Filter>Utilites\USB_DEVICE\MSC_CDC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -867,6 +873,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Utilities\disk_test_cmd\test_cmd_disk.c">
       <Filter>Utilites\disk_test_cmd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Utilities\USB_DEVICE\MSC_CDC\usbd_msc_cdc.c">
+      <Filter>Utilites\USB_DEVICE\MSC_CDC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -63,13 +63,23 @@
   * @{
   */
 
-#define USBD_VID     1155
-#define USBD_LANGID_STRING     1033
-#define USBD_MANUFACTURER_STRING     "STMicroelectronics"
-#define USBD_PID_FS     22314
-#define USBD_PRODUCT_STRING_FS     "STM32 Mass Storage"
-#define USBD_CONFIGURATION_STRING_FS     "MSC Config"
-#define USBD_INTERFACE_STRING_FS     "MSC Interface"
+//#define USBD_VID     1155
+//#define USBD_LANGID_STRING     1033
+//#define USBD_MANUFACTURER_STRING     "STMicroelectronics"
+//#define USBD_PID_FS     22314
+//#define USBD_PRODUCT_STRING_FS       "STM32 Mass Storage"
+//#define USBD_CONFIGURATION_STRING_FS "MSC Config"
+//#define USBD_INTERFACE_STRING_FS     "MSC Interface"
+
+#define USBD_VID                        0x0483
+#define USBD_PID                        0x5741
+#define USBD_LANGID_STRING              0x409
+#define USBD_MANUFACTURER_STRING        "STMicroelectronics"
+#define USBD_PRODUCT_STRING_FS          "Composite MSC CDC"
+#define USBD_SERIALNUMBER_FS_STRING     "00000000055C"
+#define USBD_CONFIGURATION_STRING_FS    "Config Name"
+#define USBD_INTERFACE_STRING_FS        "Interface Name"
+
 
 /* USER CODE BEGIN PRIVATE_DEFINES */
 
@@ -147,24 +157,25 @@ USBD_DescriptorsTypeDef FS_Desc =
 /** USB standard device descriptor. */
 __ALIGN_BEGIN uint8_t USBD_FS_DeviceDesc[USB_LEN_DEV_DESC] __ALIGN_END =
 {
-  0x12,                       /*bLength */
-  USB_DESC_TYPE_DEVICE,       /*bDescriptorType*/
-  0x00,                       /*bcdUSB */
-  0x02,
-  0x00,                       /*bDeviceClass*/
-  0x00,                       /*bDeviceSubClass*/
-  0x00,                       /*bDeviceProtocol*/
-  USB_MAX_EP0_SIZE,           /*bMaxPacketSize*/
-  LOBYTE(USBD_VID),           /*idVendor*/
-  HIBYTE(USBD_VID),           /*idVendor*/
-  LOBYTE(USBD_PID_FS),        /*idProduct*/
-  HIBYTE(USBD_PID_FS),        /*idProduct*/
-  0x00,                       /*bcdDevice rel. 2.00*/
-  0x02,
-  USBD_IDX_MFC_STR,           /*Index of manufacturer  string*/
-  USBD_IDX_PRODUCT_STR,       /*Index of product string*/
-  USBD_IDX_SERIAL_STR,        /*Index of serial number string*/
-  USBD_MAX_NUM_CONFIGURATION  /*bNumConfigurations*/
+	0x12, /*bLength */
+	USB_DESC_TYPE_DEVICE, /*bDescriptorType*/
+	0x00, /*bcdUSB */
+	0x02,
+	0xEF, /*bDeviceClass*/
+	0x02, /*bDeviceSubClass*/
+	0x01, /*bDeviceProtocol*/
+	USB_MAX_EP0_SIZE, /*bMaxPacketSize*/
+	LOBYTE(USBD_VID),
+	/*idVendor*/
+	HIBYTE(USBD_VID), /*idVendor*/
+	LOBYTE(USBD_PID), /*idVendor*/
+	HIBYTE(USBD_PID), /*idVendor*/
+	0x00, /*bcdDevice rel. 2.00*/
+	0x02,
+	USBD_IDX_MFC_STR, /*Index of manufacturer  string*/
+	USBD_IDX_PRODUCT_STR, /*Index of product string*/
+	USBD_IDX_SERIAL_STR, /*Index of serial number string*/
+	USBD_MAX_NUM_CONFIGURATION  /*bNumConfigurations*/
 };
 
 /* USB_DeviceDescriptor */
