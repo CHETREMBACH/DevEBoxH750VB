@@ -23,6 +23,7 @@
     <ProjectFile>h743zi.vcxproj</ProjectFile>
     <RemoteBuildEnvironment>
       <Records />
+      <EnvironmentSetupFiles />
     </RemoteBuildEnvironment>
     <ParallelJobCount>1</ParallelJobCount>
     <SuppressDirectoryChangeMessages>true</SuppressDirectoryChangeMessages>
@@ -99,21 +100,20 @@
       <InterfaceID>stlink-v3</InterfaceID>
       <InterfaceSerialNumber>003500363137511033333639</InterfaceSerialNumber>
       <Configuration xsi:type="com.visualgdb.edp.openocd.settings">
-        <CommandLine>-f interface/stlink.cfg -c "transport select hla_swd" -f target/stm32h7x.cfg -c init -c "reset init"</CommandLine>
+        <CommandLine>-f interface/stlink.cfg -f target/stm32h7x.cfg -c init -c "reset init"</CommandLine>
         <ExtraParameters>
           <Frequency xsi:nil="true" />
           <BoostedFrequency xsi:nil="true" />
           <ConnectUnderReset>false</ConnectUnderReset>
         </ExtraParameters>
         <LoadProgressGUIThreshold>131072</LoadProgressGUIThreshold>
-        <ProgramMode>Auto</ProgramMode>
+        <ProgramMode>Enabled</ProgramMode>
         <StartupCommands>
           <string>set remotetimeout 60</string>
           <string>target remote :$$SYS:GDB_PORT$$</string>
           <string>mon halt</string>
           <string>mon reset init</string>
           <string>load</string>
-          <string>mon reset init</string>
         </StartupCommands>
         <ProgramFLASHUsingExternalTool>false</ProgramFLASHUsingExternalTool>
         <PreferredGDBPort>0</PreferredGDBPort>

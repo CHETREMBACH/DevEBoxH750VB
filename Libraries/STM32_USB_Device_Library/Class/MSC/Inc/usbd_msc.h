@@ -47,7 +47,7 @@ extern "C" {
 #ifndef MSC_MEDIA_PACKET
 #define MSC_MEDIA_PACKET             512U
 #endif /* MSC_MEDIA_PACKET */
-
+	
 #define MSC_MAX_FS_PACKET            0x40U
 #define MSC_MAX_HS_PACKET            0x200U
 
@@ -55,7 +55,8 @@ extern "C" {
 #define BOT_RESET                    0xFF
 #define USB_MSC_CONFIG_DESC_SIZ      32
 
-
+// Interface numbers
+#define MSC_INTERFACE_IDX            0x0			// Index of MSC interface
 #define MSC_EPIN_ADDR                0x81U
 #define MSC_EPOUT_ADDR               0x01U
 

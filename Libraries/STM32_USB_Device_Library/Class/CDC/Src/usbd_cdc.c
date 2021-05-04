@@ -174,11 +174,24 @@ __ALIGN_BEGIN static uint8_t USBD_CDC_CfgHSDesc[USB_CDC_CONFIG_DESC_SIZ] __ALIGN
   USBD_MAX_POWER,                             /* MaxPower 100 mA */
 
   /*---------------------------------------------------------------------------*/
-
+  /******** IAD should be positioned just before the CDC interfaces ******
+  		 IAD to associate the two CDC interfaces */
+  
+  0x08, /* bLength */
+  0x0B, /* bDescriptorType */
+  CDC_CMD_INTERFACE_IDX, /* bFirstInterface */
+  0x02, /* bInterfaceCount */
+  0x02, /* bFunctionClass */
+  0x02, /* bFunctionSubClass */
+  0x01, /* bFunctionProtocol */
+  0x00, /* iFunction (Index of string descriptor describing this function) */
+  /* 08 bytes */
+  
+  /********************  CDC interfaces ********************/	
   /* Interface Descriptor */
   0x09,                                       /* bLength: Interface Descriptor size */
   USB_DESC_TYPE_INTERFACE,                    /* bDescriptorType: Interface */
-  0x00,                                       /* bInterfaceNumber: Number of Interface */
+  CDC_CMD_INTERFACE_IDX,                      /* bInterfaceNumber: Number of Interface */
   0x00,                                       /* bAlternateSetting: Alternate setting */
   0x01,                                       /* bNumEndpoints: One endpoints used */
   0x02,                                       /* bInterfaceClass: Communication Interface Class */
@@ -210,8 +223,8 @@ __ALIGN_BEGIN static uint8_t USBD_CDC_CfgHSDesc[USB_CDC_CONFIG_DESC_SIZ] __ALIGN
   0x05,                                       /* bFunctionLength */
   0x24,                                       /* bDescriptorType: CS_INTERFACE */
   0x06,                                       /* bDescriptorSubtype: Union func desc */
-  0x00,                                       /* bMasterInterface: Communication class interface */
-  0x01,                                       /* bSlaveInterface0: Data Class Interface */
+  CDC_CMD_INTERFACE_IDX,                      /* bMasterInterface: Communication class interface */
+  CDC_DATA_INTERFACE_IDX,                     /* bSlaveInterface0: Data Class Interface */
 
   /* Endpoint 2 Descriptor */
   0x07,                                       /* bLength: Endpoint Descriptor size */
@@ -226,7 +239,7 @@ __ALIGN_BEGIN static uint8_t USBD_CDC_CfgHSDesc[USB_CDC_CONFIG_DESC_SIZ] __ALIGN
   /* Data class interface descriptor */
   0x09,                                       /* bLength: Endpoint Descriptor size */
   USB_DESC_TYPE_INTERFACE,                    /* bDescriptorType: */
-  0x01,                                       /* bInterfaceNumber: Number of Interface */
+  CDC_DATA_INTERFACE_IDX,                     /* bInterfaceNumber: Number of Interface */
   0x00,                                       /* bAlternateSetting: Alternate setting */
   0x02,                                       /* bNumEndpoints: Two endpoints used */
   0x0A,                                       /* bInterfaceClass: CDC */
@@ -273,12 +286,25 @@ __ALIGN_BEGIN static uint8_t USBD_CDC_CfgFSDesc[USB_CDC_CONFIG_DESC_SIZ] __ALIGN
   USBD_MAX_POWER,                             /* MaxPower 100 mA */
 
   /*---------------------------------------------------------------------------*/
-
+  /******** IAD should be positioned just before the CDC interfaces ******
+  		 IAD to associate the two CDC interfaces */
+  
+  0x08, /* bLength */
+  0x0B, /* bDescriptorType */
+  CDC_CMD_INTERFACE_IDX, /* bFirstInterface */
+  0x02, /* bInterfaceCount */
+  0x02, /* bFunctionClass */
+  0x02, /* bFunctionSubClass */
+  0x01, /* bFunctionProtocol */
+  0x00, /* iFunction (Index of string descriptor describing this function) */
+  /* 08 bytes */
+  
+  /********************  CDC interfaces ********************/	
   /* Interface Descriptor */
   0x09,                                       /* bLength: Interface Descriptor size */
   USB_DESC_TYPE_INTERFACE,                    /* bDescriptorType: Interface */
   /* Interface descriptor type */
-  0x00,                                       /* bInterfaceNumber: Number of Interface */
+  CDC_CMD_INTERFACE_IDX,                      /* bInterfaceNumber: Number of Interface */
   0x00,                                       /* bAlternateSetting: Alternate setting */
   0x01,                                       /* bNumEndpoints: One endpoints used */
   0x02,                                       /* bInterfaceClass: Communication Interface Class */
@@ -310,8 +336,8 @@ __ALIGN_BEGIN static uint8_t USBD_CDC_CfgFSDesc[USB_CDC_CONFIG_DESC_SIZ] __ALIGN
   0x05,                                       /* bFunctionLength */
   0x24,                                       /* bDescriptorType: CS_INTERFACE */
   0x06,                                       /* bDescriptorSubtype: Union func desc */
-  0x00,                                       /* bMasterInterface: Communication class interface */
-  0x01,                                       /* bSlaveInterface0: Data Class Interface */
+  CDC_CMD_INTERFACE_IDX,                      /* bMasterInterface: Communication class interface */
+  CDC_DATA_INTERFACE_IDX,                     /* bSlaveInterface0: Data Class Interface */
 
   /* Endpoint 2 Descriptor */
   0x07,                                       /* bLength: Endpoint Descriptor size */
@@ -326,7 +352,7 @@ __ALIGN_BEGIN static uint8_t USBD_CDC_CfgFSDesc[USB_CDC_CONFIG_DESC_SIZ] __ALIGN
   /* Data class interface descriptor */
   0x09,                                       /* bLength: Endpoint Descriptor size */
   USB_DESC_TYPE_INTERFACE,                    /* bDescriptorType: */
-  0x01,                                       /* bInterfaceNumber: Number of Interface */
+  CDC_DATA_INTERFACE_IDX,                     /* bInterfaceNumber: Number of Interface */
   0x00,                                       /* bAlternateSetting: Alternate setting */
   0x02,                                       /* bNumEndpoints: Two endpoints used */
   0x0A,                                       /* bInterfaceClass: CDC */
@@ -369,11 +395,25 @@ __ALIGN_BEGIN static uint8_t USBD_CDC_OtherSpeedCfgDesc[USB_CDC_CONFIG_DESC_SIZ]
 #endif
   USBD_MAX_POWER,                             /* MaxPower 100 mA */
 
+  /******** IAD should be positioned just before the CDC interfaces ******
+  		 IAD to associate the two CDC interfaces */
+  
+  0x08, /* bLength */
+  0x0B, /* bDescriptorType */
+  CDC_CMD_INTERFACE_IDX, /* bFirstInterface */
+  0x02, /* bInterfaceCount */
+  0x02, /* bFunctionClass */
+  0x02, /* bFunctionSubClass */
+  0x01, /* bFunctionProtocol */
+  0x00, /* iFunction (Index of string descriptor describing this function) */
+  /* 08 bytes */
+  
+  /********************  CDC interfaces ********************/	
   /*Interface Descriptor */
   0x09,                                       /* bLength: Interface Descriptor size */
   USB_DESC_TYPE_INTERFACE,                    /* bDescriptorType: Interface */
   /* Interface descriptor type */
-  0x00,                                       /* bInterfaceNumber: Number of Interface */
+  CDC_CMD_INTERFACE_IDX,                      /* bInterfaceNumber: Number of Interface */
   0x00,                                       /* bAlternateSetting: Alternate setting */
   0x01,                                       /* bNumEndpoints: One endpoints used */
   0x02,                                       /* bInterfaceClass: Communication Interface Class */
@@ -405,8 +445,8 @@ __ALIGN_BEGIN static uint8_t USBD_CDC_OtherSpeedCfgDesc[USB_CDC_CONFIG_DESC_SIZ]
   0x05,                                       /* bFunctionLength */
   0x24,                                       /* bDescriptorType: CS_INTERFACE */
   0x06,                                       /* bDescriptorSubtype: Union func desc */
-  0x00,                                       /* bMasterInterface: Communication class interface */
-  0x01,                                       /* bSlaveInterface0: Data Class Interface */
+  CDC_CMD_INTERFACE_IDX,                      /* bMasterInterface: Communication class interface */
+  CDC_DATA_INTERFACE_IDX,                     /* bSlaveInterface0: Data Class Interface */
 
   /*Endpoint 2 Descriptor*/
   0x07,                                       /* bLength: Endpoint Descriptor size */
@@ -422,7 +462,7 @@ __ALIGN_BEGIN static uint8_t USBD_CDC_OtherSpeedCfgDesc[USB_CDC_CONFIG_DESC_SIZ]
   /*Data class interface descriptor*/
   0x09,                                       /* bLength: Endpoint Descriptor size */
   USB_DESC_TYPE_INTERFACE,                    /* bDescriptorType: */
-  0x01,                                       /* bInterfaceNumber: Number of Interface */
+  CDC_DATA_INTERFACE_IDX,                     /* bInterfaceNumber: Number of Interface */
   0x00,                                       /* bAlternateSetting: Alternate setting */
   0x02,                                       /* bNumEndpoints: Two endpoints used */
   0x0A,                                       /* bInterfaceClass: CDC */

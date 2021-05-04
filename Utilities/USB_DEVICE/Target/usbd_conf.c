@@ -121,7 +121,6 @@ void HAL_PCD_MspDeInit(PCD_HandleTypeDef* pcdHandle)
   if(pcdHandle->Instance==USB_OTG_FS)
   {
   /* USER CODE BEGIN USB_OTG_FS_MspDeInit 0 */
-
   /* USER CODE END USB_OTG_FS_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_USB_OTG_FS_CLK_DISABLE();
@@ -136,7 +135,6 @@ void HAL_PCD_MspDeInit(PCD_HandleTypeDef* pcdHandle)
     HAL_NVIC_DisableIRQ(OTG_FS_IRQn);
 
   /* USER CODE BEGIN USB_OTG_FS_MspDeInit 1 */
-
   /* USER CODE END USB_OTG_FS_MspDeInit 1 */
   }
 }
@@ -343,48 +341,77 @@ void HAL_PCD_DisconnectCallback(PCD_HandleTypeDef *hpcd)
   */
 USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
 {
-  /* Init USB Ip. */
-  if (pdev->id == DEVICE_FS) {
-  /* Link the driver to the stack. */
-  hpcd_USB_OTG_FS.pData = pdev;
-  pdev->pData = &hpcd_USB_OTG_FS;
+	/* Init USB Ip. */
+	if (pdev->id == DEVICE_FS) {
+		/* Link the driver to the stack. */
+		hpcd_USB_OTG_FS.pData = pdev;
+		pdev->pData = &hpcd_USB_OTG_FS;
 
-  hpcd_USB_OTG_FS.Instance = USB_OTG_FS;
-  hpcd_USB_OTG_FS.Init.dev_endpoints = 9;
-  hpcd_USB_OTG_FS.Init.speed = PCD_SPEED_FULL;
-  hpcd_USB_OTG_FS.Init.dma_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.phy_itface = PCD_PHY_EMBEDDED;
-  hpcd_USB_OTG_FS.Init.Sof_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.low_power_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.lpm_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.battery_charging_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.vbus_sensing_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.use_dedicated_ep1 = DISABLE;
-  if (HAL_PCD_Init(&hpcd_USB_OTG_FS) != HAL_OK)
-  {
-    Error_Handler( );
-  }
+		hpcd_USB_OTG_FS.Instance = USB_OTG_FS;
+		hpcd_USB_OTG_FS.Init.dev_endpoints = 8;
+		hpcd_USB_OTG_FS.Init.speed = PCD_SPEED_FULL;
+		hpcd_USB_OTG_FS.Init.dma_enable = DISABLE;
+		hpcd_USB_OTG_FS.Init.phy_itface = PCD_PHY_EMBEDDED;
+		hpcd_USB_OTG_FS.Init.Sof_enable = DISABLE;
+		hpcd_USB_OTG_FS.Init.low_power_enable = DISABLE;
+		hpcd_USB_OTG_FS.Init.lpm_enable = DISABLE;
+		hpcd_USB_OTG_FS.Init.battery_charging_enable = DISABLE;
+		hpcd_USB_OTG_FS.Init.vbus_sensing_enable = DISABLE;
+		hpcd_USB_OTG_FS.Init.use_dedicated_ep1 = DISABLE;
+		if (HAL_PCD_Init(&hpcd_USB_OTG_FS) != HAL_OK)
+		{
+			Error_Handler();
+		}
 
 #if (USE_HAL_PCD_REGISTER_CALLBACKS == 1U)
-  /* Register USB PCD CallBacks */
-  HAL_PCD_RegisterCallback(&hpcd_USB_OTG_FS, HAL_PCD_SOF_CB_ID, PCD_SOFCallback);
-  HAL_PCD_RegisterCallback(&hpcd_USB_OTG_FS, HAL_PCD_SETUPSTAGE_CB_ID, PCD_SetupStageCallback);
-  HAL_PCD_RegisterCallback(&hpcd_USB_OTG_FS, HAL_PCD_RESET_CB_ID, PCD_ResetCallback);
-  HAL_PCD_RegisterCallback(&hpcd_USB_OTG_FS, HAL_PCD_SUSPEND_CB_ID, PCD_SuspendCallback);
-  HAL_PCD_RegisterCallback(&hpcd_USB_OTG_FS, HAL_PCD_RESUME_CB_ID, PCD_ResumeCallback);
-  HAL_PCD_RegisterCallback(&hpcd_USB_OTG_FS, HAL_PCD_CONNECT_CB_ID, PCD_ConnectCallback);
-  HAL_PCD_RegisterCallback(&hpcd_USB_OTG_FS, HAL_PCD_DISCONNECT_CB_ID, PCD_DisconnectCallback);
+		/* Register USB PCD CallBacks */
+		HAL_PCD_RegisterCallback(&hpcd_USB_OTG_FS, HAL_PCD_SOF_CB_ID, PCD_SOFCallback);
+		HAL_PCD_RegisterCallback(&hpcd_USB_OTG_FS, HAL_PCD_SETUPSTAGE_CB_ID, PCD_SetupStageCallback);
+		HAL_PCD_RegisterCallback(&hpcd_USB_OTG_FS, HAL_PCD_RESET_CB_ID, PCD_ResetCallback);
+		HAL_PCD_RegisterCallback(&hpcd_USB_OTG_FS, HAL_PCD_SUSPEND_CB_ID, PCD_SuspendCallback);
+		HAL_PCD_RegisterCallback(&hpcd_USB_OTG_FS, HAL_PCD_RESUME_CB_ID, PCD_ResumeCallback);
+		HAL_PCD_RegisterCallback(&hpcd_USB_OTG_FS, HAL_PCD_CONNECT_CB_ID, PCD_ConnectCallback);
+		HAL_PCD_RegisterCallback(&hpcd_USB_OTG_FS, HAL_PCD_DISCONNECT_CB_ID, PCD_DisconnectCallback);
 
-  HAL_PCD_RegisterDataOutStageCallback(&hpcd_USB_OTG_FS, PCD_DataOutStageCallback);
-  HAL_PCD_RegisterDataInStageCallback(&hpcd_USB_OTG_FS, PCD_DataInStageCallback);
-  HAL_PCD_RegisterIsoOutIncpltCallback(&hpcd_USB_OTG_FS, PCD_ISOOUTIncompleteCallback);
-  HAL_PCD_RegisterIsoInIncpltCallback(&hpcd_USB_OTG_FS, PCD_ISOINIncompleteCallback);
+		HAL_PCD_RegisterDataOutStageCallback(&hpcd_USB_OTG_FS, PCD_DataOutStageCallback);
+		HAL_PCD_RegisterDataInStageCallback(&hpcd_USB_OTG_FS, PCD_DataInStageCallback);
+		HAL_PCD_RegisterIsoOutIncpltCallback(&hpcd_USB_OTG_FS, PCD_ISOOUTIncompleteCallback);
+		HAL_PCD_RegisterIsoInIncpltCallback(&hpcd_USB_OTG_FS, PCD_ISOINIncompleteCallback);
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
-  HAL_PCDEx_SetRxFiFo(&hpcd_USB_OTG_FS, 0x200);
-  HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 0, 0x80);
-  HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 1, 0x174);
-  }
-  return USBD_OK;
+		
+        //HAL_PCDEx_SetRxFiFo(&hpcd_USB_OTG_FS, 0x200);
+        //HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 0, 0x80);
+        //HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 1, 0x174);
+        		
+        //// HID interface
+        // interrupt IN EP 0x83
+        //// interface for application
+        // Bulk IN EP 0x84
+        // Bulk OUT EP 0x04
+        // interrupt IN EP 0x85
+        // ISO IN EP 0x86
+        ////IAD Link both CDC interfaces
+        //// CDC Control interface
+        // Interrupt IN EP 0x82
+        //// CDC Data interface
+        // Bulk IN EP 0x81
+        // Bulk OUT EP 0x01		
+        		
+        //#define CDC_CMD_EP      0x82U  /* EP2 for CDC commands */
+        //#define CDC_IN_EP       0x83U  /* EP1 for data IN */
+        //#define CDC_OUT_EP      0x03U  /* EP1 for data OUT */		
+        //#define MSC_EPIN_ADDR   0x81U
+        //#define MSC_EPOUT_ADDR  0x01U
+		
+		/* RX buffer is a big as the biggest one */
+		HAL_PCDEx_SetRxFiFo(&hpcd_USB_OTG_FS, 0x80);
+		/* Lower level can only support from 0 to 5 maximum for L4 series for IN endpoints */
+		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 0, 0x40); /* Default control EP */
+		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 1, 0x40); /* HID interrupt EP   */
+		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 2, 0x40); /* App bulk EP        */
+		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 3, 0x40); /* App interrupt EP   */
+	}
+	return USBD_OK;
 }
 
 /**

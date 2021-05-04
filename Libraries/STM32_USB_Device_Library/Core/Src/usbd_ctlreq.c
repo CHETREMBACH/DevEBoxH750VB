@@ -524,7 +524,7 @@ static void USBD_GetDescriptor(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *r
       break;
 
     case USB_DESC_TYPE_DEVICE_QUALIFIER:
-      if (pdev->dev_speed == USBD_SPEED_HIGH)
+	  if (pdev->dev_speed == USBD_SPEED_FULL)
       {
         pbuf = pdev->pClass->GetDeviceQualifierDescriptor(&len);
       }
@@ -536,7 +536,7 @@ static void USBD_GetDescriptor(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *r
       break;
 
     case USB_DESC_TYPE_OTHER_SPEED_CONFIGURATION:
-      if (pdev->dev_speed == USBD_SPEED_HIGH)
+	  if (pdev->dev_speed == USBD_SPEED_FULL)
       {
         pbuf = pdev->pClass->GetOtherSpeedConfigDescriptor(&len);
         pbuf[1] = USB_DESC_TYPE_OTHER_SPEED_CONFIGURATION;

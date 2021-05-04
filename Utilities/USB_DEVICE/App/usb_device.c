@@ -2,7 +2,6 @@
 /**
   ******************************************************************************
   * @file           : usb_device.c
-  * @version        : v1.0_Cube
   * @brief          : This file implements the USB Device
   ******************************************************************************
   * @attention
@@ -26,37 +25,17 @@
 #include "usbd_desc.h"
 #include "usbd_msc.h"
 #include "usbd_storage_if.h"
-
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
-
-/* USER CODE BEGIN PV */
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE END PV */
-
-/* USER CODE BEGIN PFP */
-/* Private function prototypes -----------------------------------------------*/
-
-/* USER CODE END PFP */
+#include "usbd_composite.h"
 
 /* USB Device Core handle declaration. */
 USBD_HandleTypeDef hUsbDeviceFS;
 void Error_Handler(void);
-/*
- * -- Insert your variables declaration here --
- */
-/* USER CODE BEGIN 0 */
 
-/* USER CODE END 0 */
 
-/*
- * -- Insert your external function declaration here --
- */
-/* USER CODE BEGIN 1 */
+#define MSC_IDX                  0x0		
+#define CDC_IDX                  0x1		
 
-/* USER CODE END 1 */
+USBD_ClassTypeDef* handles[2];
 
 /**
   * Init USB device Library, add supported class and start the library
@@ -64,32 +43,72 @@ void Error_Handler(void);
   */
 void MX_USB_DEVICE_Init(void)
 {
-  /* USER CODE BEGIN USB_DEVICE_Init_PreTreatment */
+	handles[CDC_IDX] = &USBD_CDC;
+	handles[MSC_IDX] = &USBD_MSC;	
+	
+	// Base Descriptor
+	USB_ConfigDescType base_desc = {
+		/*Configuration Descriptor*/
+		0x09,
+		/* bLength: Configuration Descriptor size */
+		USB_DESC_TYPE_CONFIGURATION,
+		/* bDescriptorType: Configuration */
+		0x00,
+		/* wTotalLength:no of returned bytes. Is set later by composite */
+		0x03,
+		/* bNumInterfaces */
+		0x01,
+		/* bConfigurationValue: Configuration value */
+		0x02,
+		/* iConfiguration: Index of string descriptor describing the configuration */
+		0xC0,
+		/* bmAttributes: self powered */
+		0x32,
+		/* MaxPower 100 mA */
+        /* 09 bytes */
+	};	
+	
+	/* Init Device Library, add supported class and start the library. */
+	if (USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS) != USBD_OK)
+	{
+		Error_Handler();
+	}
+	// Add descriptors and class functions to composite device
+	USBD_Composite_Set_Classes(handles, 2, &base_desc);
+	// Define endpoints
+	//MSC
+	USBD_Composite_EPIN_To_Class(MSC_EPIN_ADDR, MSC_IDX);
+	USBD_Composite_EPOUT_To_Class(MSC_EPOUT_ADDR, MSC_IDX);
+	USBD_Composite_InterfaceToClass(MSC_INTERFACE_IDX, MSC_IDX);
+	//CDC
+	USBD_Composite_EPIN_To_Class(CDC_CMD_EP, CDC_IDX);
+	USBD_Composite_EPIN_To_Class(CDC_IN_EP, CDC_IDX);
+	USBD_Composite_EPIN_To_Class(CDC_OUT_EP, CDC_IDX);
 
-  /* USER CODE END USB_DEVICE_Init_PreTreatment */
+	USBD_Composite_InterfaceToClass(CDC_CMD_INTERFACE_IDX, CDC_IDX);
+	USBD_Composite_InterfaceToClass(CDC_DATA_INTERFACE_IDX, CDC_IDX);
 
-  /* Init Device Library, add supported class and start the library. */
-  if (USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS) != USBD_OK)
-  {
-    Error_Handler();
-  }
-  if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_MSC) != USBD_OK)
-  {
-    Error_Handler();
-  }
-  if (USBD_MSC_RegisterStorage(&hUsbDeviceFS, &USBD_Storage_Interface_fops_FS) != USBD_OK)
-  {
-    Error_Handler();
-  }
-  if (USBD_Start(&hUsbDeviceFS) != USBD_OK)
-  {
-    Error_Handler();
-  }
+	if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_Composite) != USBD_OK)
+	{
+		Error_Handler();
+	}
 
-  /* USER CODE BEGIN USB_DEVICE_Init_PostTreatment */
-  HAL_PWREx_EnableUSBVoltageDetector();
+	if (USBD_CDC_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS) != USBD_OK)
+	{
+		Error_Handler();
+	}
+	
+	if (USBD_MSC_RegisterStorage(&hUsbDeviceFS, &USBD_Storage_Interface_fops_FS) != USBD_OK)
+	{
+		Error_Handler();
+	}
 
-  /* USER CODE END USB_DEVICE_Init_PostTreatment */
+	if (USBD_Start(&hUsbDeviceFS) != USBD_OK)
+	{
+		Error_Handler();
+	}
+		
+	HAL_PWREx_EnableUSBVoltageDetector();
 }
 
 /**

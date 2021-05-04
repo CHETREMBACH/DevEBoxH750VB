@@ -64,7 +64,6 @@ extern "C" {
 #define USBD_BOT_STATUS_RECOVERY           1U
 #define USBD_BOT_STATUS_ERROR              2U
 
-
 #define USBD_DIR_IN                        0U
 #define USBD_DIR_OUT                       1U
 #define USBD_BOTH_DIR                      2U

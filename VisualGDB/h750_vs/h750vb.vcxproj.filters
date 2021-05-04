@@ -136,6 +136,9 @@
     <Filter Include="Utilites\disk_test_cmd">
       <UniqueIdentifier>{76f86cfe-6ddb-490e-9a2d-6113d932519e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilites\USB_DEVICE\Composite">
+      <UniqueIdentifier>{10280ede-0300-4188-9d4b-f377b1412600}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="h750vb-Debug.vgdbsettings">
@@ -403,6 +406,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Utilities\disk_test_cmd\test_cmd_disk.h">
       <Filter>Utilites\disk_test_cmd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Utilities\USB_DEVICE\Composite\usbd_composite.h">
+      <Filter>Utilites\USB_DEVICE\Composite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -867,6 +873,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Utilities\disk_test_cmd\test_cmd_disk.c">
       <Filter>Utilites\disk_test_cmd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Utilities\USB_DEVICE\Composite\usbd_composite.c">
+      <Filter>Utilites\USB_DEVICE\Composite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -141,13 +141,13 @@ __ALIGN_BEGIN static uint8_t USBD_MSC_CfgHSDesc[USB_MSC_CONFIG_DESC_SIZ]  __ALIG
   /********************  Mass Storage interface ********************/
   0x09,                                            /* bLength: Interface Descriptor size */
   0x04,                                            /* bDescriptorType: */
-  0x00,                                            /* bInterfaceNumber: Number of Interface */
+  MSC_INTERFACE_IDX,                               /* bInterfaceNumber: Number of Interface */
   0x00,                                            /* bAlternateSetting: Alternate setting */
   0x02,                                            /* bNumEndpoints */
   0x08,                                            /* bInterfaceClass: MSC Class */
   0x06,                                            /* bInterfaceSubClass : SCSI transparent */
   0x50,                                            /* nInterfaceProtocol */
-  0x05,                                            /* iInterface: */
+  USBD_IDX_INTERFACE_STR,                          /* iInterface: */
   /********************  Mass Storage Endpoints ********************/
   0x07,                                            /* Endpoint descriptor length = 7 */
   0x05,                                            /* Endpoint descriptor type */
