@@ -185,23 +185,47 @@ static uint8_t USBD_Composite_Setup (USBD_HandleTypeDef *pdev, USBD_SetupReqType
 
 static uint8_t USBD_Composite_DataIn (USBD_HandleTypeDef *pdev, uint8_t epnum) {
   int class_index;
-
+	T3_HI;
   class_index = in_endpoint_to_class[epnum];
   uint8_t ret = USBD_Classes[class_index]->DataIn(pdev, epnum);
   if(ret != USBD_OK){
 	  //HAL_GPIO_WritePin(LED_ERR_GPIO_Port, LED_ERR_Pin,GPIO_PIN_SET);
   }
+	T3_LO;
   return ret;
 }
 
 static uint8_t USBD_Composite_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum) {
   int class_index;
-
+	T4_HI;
   class_index = out_endpoint_to_class[epnum];
 
+	switch(epnum)
+	{
+	case 0:
+		T5_HI;
+		break;
+	case 1:
+		T6_HI;
+		break;		
+	case 2:
+		T7_HI;
+		break;		
+	case 3:
+		T8_HI;
+		break;		
+	default:
+		break;	
+	}
+	
+	
   uint8_t ret = USBD_Classes[class_index]->DataOut(pdev, epnum);
+	T4_LO;
+	T5_LO;	
+	T6_LO;		
+	T7_LO;		
+	T8_LO;		
   return ret;
-
 }
 
 static uint8_t USBD_Composite_EP0_RxReady (USBD_HandleTypeDef *pdev) {
@@ -246,7 +270,7 @@ __ALIGN_BEGIN static uint8_t USBD_Composite_DeviceQualifierDesc[USB_LEN_DEV_QUAL
   0x00,
   0x00,
   0x40,
-  0x01,
+  0x00,
   0x00,
 };
 

@@ -81,9 +81,9 @@ void MX_USB_DEVICE_Init(void)
 	USBD_Composite_EPOUT_To_Class(MSC_EPOUT_ADDR, MSC_IDX);
 	USBD_Composite_InterfaceToClass(MSC_INTERFACE_IDX, MSC_IDX);
 	//CDC
-	USBD_Composite_EPIN_To_Class(CDC_CMD_EP, CDC_IDX);
 	USBD_Composite_EPIN_To_Class(CDC_IN_EP, CDC_IDX);
-	USBD_Composite_EPIN_To_Class(CDC_OUT_EP, CDC_IDX);
+	USBD_Composite_EPOUT_To_Class(CDC_OUT_EP, CDC_IDX);
+	USBD_Composite_EPIN_To_Class(CDC_CMD_EP, CDC_IDX);
 
 	USBD_Composite_InterfaceToClass(CDC_CMD_INTERFACE_IDX, CDC_IDX);
 	USBD_Composite_InterfaceToClass(CDC_DATA_INTERFACE_IDX, CDC_IDX);

@@ -27,7 +27,6 @@
 #include "usbd_msc.h"
 
 /* USER CODE BEGIN Includes */
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -36,7 +35,6 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-
 /* USER CODE END PV */
 
 PCD_HandleTypeDef hpcd_USB_OTG_FS;
@@ -45,17 +43,13 @@ void Error_Handler(void);
 /* External functions --------------------------------------------------------*/
 
 /* USER CODE BEGIN 0 */
-
 /* USER CODE END 0 */
-
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
 USBD_StatusTypeDef USBD_Get_USB_Status(HAL_StatusTypeDef hal_status);
 
 /* USER CODE END PFP */
-
 /* Private functions ---------------------------------------------------------*/
-
 /* USER CODE BEGIN 1 */
 /* USER CODE END 1 */
 
@@ -222,9 +216,8 @@ void HAL_PCD_ResetCallback(PCD_HandleTypeDef *hpcd)
   {
     Error_Handler();
   }
-    /* Set Speed. */
+  /* Set Speed. */
   USBD_LL_SetSpeed((USBD_HandleTypeDef*)hpcd->pData, speed);
-
   /* Reset Device. */
   USBD_LL_Reset((USBD_HandleTypeDef*)hpcd->pData);
 }
@@ -348,7 +341,7 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
 		pdev->pData = &hpcd_USB_OTG_FS;
 
 		hpcd_USB_OTG_FS.Instance = USB_OTG_FS;
-		hpcd_USB_OTG_FS.Init.dev_endpoints = 8;
+		hpcd_USB_OTG_FS.Init.dev_endpoints = 5;
 		hpcd_USB_OTG_FS.Init.speed = PCD_SPEED_FULL;
 		hpcd_USB_OTG_FS.Init.dma_enable = DISABLE;
 		hpcd_USB_OTG_FS.Init.phy_itface = PCD_PHY_EMBEDDED;
@@ -405,11 +398,11 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
 		
 		/* RX buffer is a big as the biggest one */
 		HAL_PCDEx_SetRxFiFo(&hpcd_USB_OTG_FS, 0x80);
-		/* Lower level can only support from 0 to 5 maximum for L4 series for IN endpoints */
-		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 0, 0x40); /* Default control EP */
-		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 1, 0x40); /* HID interrupt EP   */
-		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 2, 0x40); /* App bulk EP        */
-		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 3, 0x40); /* App interrupt EP   */
+
+		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 0, 0x40); 
+		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 1, 0x40); 
+		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 2, 0x40);
+		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 3, 0x80);
 	}
 	return USBD_OK;
 }
