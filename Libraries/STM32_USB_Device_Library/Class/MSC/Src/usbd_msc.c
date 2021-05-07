@@ -276,6 +276,8 @@ __ALIGN_BEGIN static uint8_t USBD_MSC_DeviceQualifierDesc[USB_LEN_DEV_QUALIFIER_
   * @}
   */
 
+USBD_MSC_BOT_HandleTypeDef     *hmsc;
+USBD_StorageTypeDef *fops_msc_p;
 
 /** @defgroup MSC_CORE_Private_Functions
   * @{
@@ -290,44 +292,42 @@ __ALIGN_BEGIN static uint8_t USBD_MSC_DeviceQualifierDesc[USB_LEN_DEV_QUALIFIER_
   */
 uint8_t USBD_MSC_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
 {
-  UNUSED(cfgidx);
-  USBD_MSC_BOT_HandleTypeDef *hmsc;
+	UNUSED(cfgidx);
 
-  hmsc = USBD_malloc(sizeof(USBD_MSC_BOT_HandleTypeDef));
+	if (pdev->dev_speed == USBD_SPEED_HIGH)
+	{
+		/* Open EP OUT */
+		(void)USBD_LL_OpenEP(pdev, MSC_EPOUT_ADDR, USBD_EP_TYPE_BULK, MSC_MAX_HS_PACKET);
+		pdev->ep_out[MSC_EPOUT_ADDR & 0xFU].is_used = 1U;
 
-  if (hmsc == NULL)
-  {
-    pdev->pClassData = NULL;
-    return (uint8_t)USBD_EMEM;
-  }
+		/* Open EP IN */
+		(void)USBD_LL_OpenEP(pdev, MSC_EPIN_ADDR, USBD_EP_TYPE_BULK, MSC_MAX_HS_PACKET);
+		pdev->ep_in[MSC_EPIN_ADDR & 0xFU].is_used = 1U;
+	}
+	else
+	{
+		/* Open EP OUT */
+		(void)USBD_LL_OpenEP(pdev, MSC_EPOUT_ADDR, USBD_EP_TYPE_BULK, MSC_MAX_FS_PACKET);
+		pdev->ep_out[MSC_EPOUT_ADDR & 0xFU].is_used = 1U;
 
-  pdev->pClassData = (void *)hmsc;
+		/* Open EP IN */
+		(void)USBD_LL_OpenEP(pdev, MSC_EPIN_ADDR, USBD_EP_TYPE_BULK, MSC_MAX_FS_PACKET);
+		pdev->ep_in[MSC_EPIN_ADDR & 0xFU].is_used = 1U;
+	}
 
-  if (pdev->dev_speed == USBD_SPEED_HIGH)
-  {
-    /* Open EP OUT */
-    (void)USBD_LL_OpenEP(pdev, MSC_EPOUT_ADDR, USBD_EP_TYPE_BULK, MSC_MAX_HS_PACKET);
-    pdev->ep_out[MSC_EPOUT_ADDR & 0xFU].is_used = 1U;
+	hmsc = USBD_malloc(sizeof(USBD_MSC_BOT_HandleTypeDef));
 
-    /* Open EP IN */
-    (void)USBD_LL_OpenEP(pdev, MSC_EPIN_ADDR, USBD_EP_TYPE_BULK, MSC_MAX_HS_PACKET);
-    pdev->ep_in[MSC_EPIN_ADDR & 0xFU].is_used = 1U;
-  }
-  else
-  {
-    /* Open EP OUT */
-    (void)USBD_LL_OpenEP(pdev, MSC_EPOUT_ADDR, USBD_EP_TYPE_BULK, MSC_MAX_FS_PACKET);
-    pdev->ep_out[MSC_EPOUT_ADDR & 0xFU].is_used = 1U;
+	if (hmsc == NULL)
+	{
+		//pdev->pClassData = NULL;
+		return (uint8_t)USBD_EMEM;
+	}
+	//pdev->pClassData = (void *)hmsc;	
+		
+	/* Init the BOT  layer */
+	MSC_BOT_Init(pdev);
 
-    /* Open EP IN */
-    (void)USBD_LL_OpenEP(pdev, MSC_EPIN_ADDR, USBD_EP_TYPE_BULK, MSC_MAX_FS_PACKET);
-    pdev->ep_in[MSC_EPIN_ADDR & 0xFU].is_used = 1U;
-  }
-
-  /* Init the BOT  layer */
-  MSC_BOT_Init(pdev);
-
-  return (uint8_t)USBD_OK;
+	return (uint8_t)USBD_OK;
 }
 
 /**
@@ -339,27 +339,25 @@ uint8_t USBD_MSC_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
   */
 uint8_t USBD_MSC_DeInit(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
 {
-  UNUSED(cfgidx);
+	UNUSED(cfgidx);
 
-  /* Close MSC EPs */
-  (void)USBD_LL_CloseEP(pdev, MSC_EPOUT_ADDR);
-  pdev->ep_out[MSC_EPOUT_ADDR & 0xFU].is_used = 0U;
+	/* Close MSC EPs */
+	(void)USBD_LL_CloseEP(pdev, MSC_EPOUT_ADDR);
+	pdev->ep_out[MSC_EPOUT_ADDR & 0xFU].is_used = 0U;
 
-  /* Close EP IN */
-  (void)USBD_LL_CloseEP(pdev, MSC_EPIN_ADDR);
-  pdev->ep_in[MSC_EPIN_ADDR & 0xFU].is_used = 0U;
+	/* Close EP IN */
+	(void)USBD_LL_CloseEP(pdev, MSC_EPIN_ADDR);
+	pdev->ep_in[MSC_EPIN_ADDR & 0xFU].is_used = 0U;
 
-  /* Free MSC Class Resources */
-  if (pdev->pClassData != NULL)
-  {
-    /* De-Init the BOT layer */
-    MSC_BOT_DeInit(pdev);
-
-    (void)USBD_free(pdev->pClassData);
-    pdev->pClassData = NULL;
-  }
-
-  return (uint8_t)USBD_OK;
+	/* Free MSC Class Resources */
+	if (hmsc != NULL) 
+	{	
+		MSC_BOT_DeInit(pdev);		
+		fops_msc_p = NULL;	
+		(void)USBD_free(hmsc);
+		hmsc = NULL;
+	}	
+	return (uint8_t)USBD_OK;
 }
 /**
   * @brief  USBD_MSC_Setup
@@ -370,7 +368,6 @@ uint8_t USBD_MSC_DeInit(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
   */
 uint8_t USBD_MSC_Setup(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
 {
-  USBD_MSC_BOT_HandleTypeDef *hmsc = (USBD_MSC_BOT_HandleTypeDef *)pdev->pClassData;
   USBD_StatusTypeDef ret = USBD_OK;
   uint16_t status_info = 0U;
 
@@ -389,7 +386,7 @@ uint8_t USBD_MSC_Setup(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
           if ((req->wValue  == 0U) && (req->wLength == 1U) &&
               ((req->bmRequest & 0x80U) == 0x80U))
           {
-            hmsc->max_lun = (uint32_t)((USBD_StorageTypeDef *)pdev->pUserData)->GetMaxLun();
+	          hmsc->max_lun = fops_msc_p->GetMaxLun();
             (void)USBD_CtlSendData(pdev, (uint8_t *)&hmsc->max_lun, 1U);
           }
           else
@@ -574,14 +571,15 @@ uint8_t *USBD_MSC_GetDeviceQualifierDescriptor(uint16_t *length)
   */
 uint8_t USBD_MSC_RegisterStorage(USBD_HandleTypeDef *pdev, USBD_StorageTypeDef *fops)
 {
-  if (fops == NULL)
-  {
-    return (uint8_t)USBD_FAIL;
-  }
+	if (fops == NULL)
+	{
+		return (uint8_t)USBD_FAIL;
+	}
 
-  pdev->pUserData = fops;
+	fops_msc_p = fops;	
+	//pdev->pUserData = fops;
 
-  return (uint8_t)USBD_OK;
+	return (uint8_t)USBD_OK;
 }
 
 /**

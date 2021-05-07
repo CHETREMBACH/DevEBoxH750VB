@@ -109,6 +109,9 @@ USBD_MSC_BOT_HandleTypeDef;
 extern USBD_ClassTypeDef  USBD_MSC;
 #define USBD_MSC_CLASS    &USBD_MSC
 
+extern USBD_MSC_BOT_HandleTypeDef *hmsc;
+extern USBD_StorageTypeDef *fops_msc_p;	
+	
 uint8_t  USBD_MSC_RegisterStorage(USBD_HandleTypeDef   *pdev,
                                   USBD_StorageTypeDef *fops);
 /**

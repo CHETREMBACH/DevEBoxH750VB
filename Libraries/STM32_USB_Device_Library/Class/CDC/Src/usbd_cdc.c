@@ -482,11 +482,13 @@ __ALIGN_BEGIN static uint8_t USBD_CDC_OtherSpeedCfgDesc[USB_CDC_CONFIG_DESC_SIZ]
   * @}
   */
 
+USBD_CDC_ItfTypeDef *fops_cdc_p;
+USBD_CDC_HandleTypeDef     *hcdc;
+
 /** @defgroup USBD_CDC_Private_Functions
   * @{
   */
-USBD_CDC_ItfTypeDef *fops_cdc_p;
-USBD_CDC_HandleTypeDef     *hcdc;
+
 /**
   * @brief  USBD_CDC_Init
   *         Initialize the CDC interface
@@ -554,10 +556,10 @@ static uint8_t USBD_CDC_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
 
 	if (hcdc == NULL)
 	{
-		pdev->pClassData = NULL;
+		//pdev->pClassData = NULL;
 		return (uint8_t)USBD_EMEM;
 	}
-	pdev->pClassData = (void *)hcdc;		
+	//pdev->pClassData = (void *)hcdc;		
 
 	/* Init  physical Interface components */
 	fops_cdc_p->Init();
@@ -875,7 +877,7 @@ uint8_t USBD_CDC_RegisterInterface(USBD_HandleTypeDef *pdev,
   }
 
   fops_cdc_p = fops;	
-  pdev->pUserData = fops;
+  //pdev->pUserData = fops;
 
   return (uint8_t)USBD_OK;
 }
