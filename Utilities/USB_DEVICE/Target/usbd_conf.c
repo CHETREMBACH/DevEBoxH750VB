@@ -24,6 +24,7 @@
 #include "stm32h7xx_hal.h"
 #include "usbd_def.h"
 #include "usbd_core.h"
+#include "usbd_cdc.h"
 #include "usbd_msc.h"
 
 /* USER CODE BEGIN Includes */
@@ -191,6 +192,10 @@ void HAL_PCD_SOFCallback(PCD_HandleTypeDef *hpcd)
   USBD_LL_SOF((USBD_HandleTypeDef*)hpcd->pData);
 }
 
+
+uint8_t USBD_MSC_DeInit(USBD_HandleTypeDef *pdev, uint8_t cfgidx);
+uint8_t USBD_CDC_DeInit(USBD_HandleTypeDef *pdev, uint8_t cfgidx);
+
 /**
   * @brief  Reset callback.
   * @param  hpcd: PCD handle
@@ -219,6 +224,11 @@ void HAL_PCD_ResetCallback(PCD_HandleTypeDef *hpcd)
   /* Set Speed. */
   USBD_LL_SetSpeed((USBD_HandleTypeDef*)hpcd->pData, speed);
   /* Reset Device. */
+  /* DeInitialize  the mass storage configuration */
+  USBD_MSC_DeInit((USBD_HandleTypeDef*)hpcd->pData, 0);	
+  /* DeInitialize  the mass storage configuration */
+  USBD_CDC_DeInit((USBD_HandleTypeDef*)hpcd->pData, 0);		
+	
   USBD_LL_Reset((USBD_HandleTypeDef*)hpcd->pData);
 }
 
@@ -637,26 +647,6 @@ USBD_StatusTypeDef USBD_LL_PrepareReceive(USBD_HandleTypeDef *pdev, uint8_t ep_a
 uint32_t USBD_LL_GetRxDataSize(USBD_HandleTypeDef *pdev, uint8_t ep_addr)
 {
   return HAL_PCD_EP_GetRxCount((PCD_HandleTypeDef*) pdev->pData, ep_addr);
-}
-/**
-  * @brief  Static single allocation.
-  * @param  size: Size of allocated memory
-  * @retval None
-  */
-void *USBD_static_malloc(uint32_t size)
-{
-  static uint32_t mem[(sizeof(USBD_MSC_BOT_HandleTypeDef)/4)+1];/* On 32-bit boundary */
-  return mem;
-}
-
-/**
-  * @brief  Dummy memory free
-  * @param  p: Pointer to allocated  memory address
-  * @retval None
-  */
-void USBD_static_free(void *p)
-{
-
 }
 
 /**

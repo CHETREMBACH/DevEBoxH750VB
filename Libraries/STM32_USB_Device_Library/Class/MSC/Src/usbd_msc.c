@@ -275,7 +275,7 @@ __ALIGN_BEGIN static uint8_t USBD_MSC_DeviceQualifierDesc[USB_LEN_DEV_QUALIFIER_
 /**
   * @}
   */
-
+USBD_MSC_BOT_HandleTypeDef msc_usbd;
 USBD_MSC_BOT_HandleTypeDef     *hmsc;
 USBD_StorageTypeDef *fops_msc_p;
 
@@ -315,8 +315,8 @@ uint8_t USBD_MSC_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
 		pdev->ep_in[MSC_EPIN_ADDR & 0xFU].is_used = 1U;
 	}
 
-	hmsc = USBD_malloc(sizeof(USBD_MSC_BOT_HandleTypeDef));
-
+	hmsc = &msc_usbd;
+	
 	if (hmsc == NULL)
 	{
 		//pdev->pClassData = NULL;
@@ -354,8 +354,6 @@ uint8_t USBD_MSC_DeInit(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
 	{	
 		MSC_BOT_DeInit(pdev);		
 		fops_msc_p = NULL;	
-		(void)USBD_free(hmsc);
-		hmsc = NULL;
 	}	
 	return (uint8_t)USBD_OK;
 }

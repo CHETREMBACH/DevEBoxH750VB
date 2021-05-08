@@ -100,7 +100,7 @@ EndBSPDependencies */
   */
 
 static uint8_t USBD_CDC_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx);
-static uint8_t USBD_CDC_DeInit(USBD_HandleTypeDef *pdev, uint8_t cfgidx);
+uint8_t USBD_CDC_DeInit(USBD_HandleTypeDef *pdev, uint8_t cfgidx);
 static uint8_t USBD_CDC_Setup(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req);
 static uint8_t USBD_CDC_DataIn(USBD_HandleTypeDef *pdev, uint8_t epnum);
 static uint8_t USBD_CDC_DataOut(USBD_HandleTypeDef *pdev, uint8_t epnum);
@@ -482,6 +482,7 @@ __ALIGN_BEGIN static uint8_t USBD_CDC_OtherSpeedCfgDesc[USB_CDC_CONFIG_DESC_SIZ]
   * @}
   */
 
+USBD_CDC_HandleTypeDef cdc_usbd;
 USBD_CDC_ItfTypeDef *fops_cdc_p;
 USBD_CDC_HandleTypeDef     *hcdc;
 
@@ -552,7 +553,7 @@ static uint8_t USBD_CDC_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
 		return (uint8_t)USBD_FAIL;
 	}	
 	
-	hcdc = USBD_malloc(sizeof(USBD_CDC_HandleTypeDef));
+	hcdc = &cdc_usbd;
 
 	if (hcdc == NULL)
 	{
@@ -594,7 +595,7 @@ static uint8_t USBD_CDC_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
   * @param  cfgidx: Configuration index
   * @retval status
   */
-static uint8_t USBD_CDC_DeInit(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
+uint8_t USBD_CDC_DeInit(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
 {
 	UNUSED(cfgidx);
 
@@ -616,13 +617,6 @@ static uint8_t USBD_CDC_DeInit(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
 	{
 		fops_cdc_p->DeInit();	
 	}	
-
-	if (hcdc != NULL) 
-	{
-		(void)USBD_free(hcdc);
-		hcdc = NULL;
-	}
-
 	return (uint8_t)USBD_OK;
 }
 
