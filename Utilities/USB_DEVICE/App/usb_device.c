@@ -1,4 +1,3 @@
-/* USER CODE BEGIN Header */
 /**
   ******************************************************************************
   * @file           : usb_device.c
@@ -16,7 +15,6 @@
   *
   ******************************************************************************
   */
-/* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
 
@@ -26,14 +24,15 @@
 #include "usbd_msc.h"
 #include "usbd_storage_if.h"
 #include "usbd_composite.h"
+#include "usbd_cdca_if.h"
+#include "usbd_cdca.h"
 
 /* USB Device Core handle declaration. */
 USBD_HandleTypeDef hUsbDeviceFS;
 void Error_Handler(void);
 
-
 #define MSC_IDX                  0x0		
-#define CDC_IDX                  0x1		
+#define CDCA_IDX                 0x1		
 
 USBD_ClassTypeDef* handles[2];
 
@@ -43,12 +42,12 @@ USBD_ClassTypeDef* handles[2];
   */
 void MX_USB_DEVICE_Init(void)
 {
-	handles[CDC_IDX] = &USBD_CDC;
-	handles[MSC_IDX] = &USBD_MSC;	
+	handles[MSC_IDX] =  &USBD_MSC;	
+	handles[CDCA_IDX] = &USBD_CDCA;
 	
 	// Base Descriptor
 	USB_ConfigDescType base_desc = {
-		/*Configuration Descriptor*/
+    /*Configuration Descriptor*/
 		0x09,
 		/* bLength: Configuration Descriptor size */
 		USB_DESC_TYPE_CONFIGURATION,
@@ -65,7 +64,7 @@ void MX_USB_DEVICE_Init(void)
 		/* bmAttributes: self powered */
 		0x32,
 		/* MaxPower 100 mA */
-        /* 09 bytes */
+    /* 09 bytes */
 	};	
 	
 	/* Init Device Library, add supported class and start the library. */
@@ -81,19 +80,19 @@ void MX_USB_DEVICE_Init(void)
 	USBD_Composite_EPOUT_To_Class(MSC_EPOUT_ADDR, MSC_IDX);
 	USBD_Composite_InterfaceToClass(MSC_INTERFACE_IDX, MSC_IDX);
 	//CDC
-	USBD_Composite_EPIN_To_Class(CDC_IN_EP, CDC_IDX);
-	USBD_Composite_EPOUT_To_Class(CDC_OUT_EP, CDC_IDX);
-	USBD_Composite_EPIN_To_Class(CDC_CMD_EP, CDC_IDX);
+	USBD_Composite_EPIN_To_Class(CDCA_IN_EP, CDCA_IDX);
+	USBD_Composite_EPOUT_To_Class(CDCA_OUT_EP, CDCA_IDX);
+	USBD_Composite_EPIN_To_Class(CDCA_CMD_EP, CDCA_IDX);
 
-	USBD_Composite_InterfaceToClass(CDC_CMD_INTERFACE_IDX, CDC_IDX);
-	USBD_Composite_InterfaceToClass(CDC_DATA_INTERFACE_IDX, CDC_IDX);
+	USBD_Composite_InterfaceToClass(CDCA_CMD_INTERFACE_IDX, CDCA_IDX);
+	USBD_Composite_InterfaceToClass(CDCA_DATA_INTERFACE_IDX, CDCA_IDX);
 
 	if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_Composite) != USBD_OK)
 	{
 		Error_Handler();
 	}
 
-	if (USBD_CDC_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS) != USBD_OK)
+	if (USBD_CDCA_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_cdca_FS) != USBD_OK)
 	{
 		Error_Handler();
 	}
@@ -107,11 +106,16 @@ void MX_USB_DEVICE_Init(void)
 	{
 		Error_Handler();
 	}
-		
+
 	HAL_PWREx_EnableUSBVoltageDetector();
 }
 
 /**
   * @}
   */
+
+/**
+  * @}
+  */
+
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -17,12 +17,6 @@
   ******************************************************************************
   */
 
-/* BSPDependencies
-- "stm32xxxxx_{eval}{discovery}{nucleo_144}.c"
-- "stm32xxxxx_{eval}{discovery}_io.c"
-- "stm32xxxxx_{eval}{discovery}{adafruit}_sd.c"
-EndBSPDependencies */
-
 /* Includes ------------------------------------------------------------------*/
 #include "usbd_msc_bot.h"
 #include "usbd_msc_scsi.h"
@@ -516,6 +510,7 @@ static int8_t SCSI_RequestSense(USBD_HandleTypeDef *pdev, uint8_t lun, uint8_t *
 {
   UNUSED(lun);
   uint8_t i;
+
   if (hmsc == NULL)
   {
     return -1;
@@ -674,6 +669,7 @@ static int8_t SCSI_AllowPreventRemovable(USBD_HandleTypeDef *pdev, uint8_t lun, 
   */
 static int8_t SCSI_Read10(USBD_HandleTypeDef *pdev, uint8_t lun, uint8_t *params)
 {
+
   if (hmsc == NULL)
   {
     return -1;
@@ -977,6 +973,7 @@ static int8_t SCSI_Write12(USBD_HandleTypeDef *pdev, uint8_t lun, uint8_t *param
   */
 static int8_t SCSI_Verify10(USBD_HandleTypeDef *pdev, uint8_t lun, uint8_t *params)
 {
+
   if (hmsc == NULL)
   {
     return -1;
@@ -1009,6 +1006,7 @@ static int8_t SCSI_Verify10(USBD_HandleTypeDef *pdev, uint8_t lun, uint8_t *para
 static int8_t SCSI_CheckAddressRange(USBD_HandleTypeDef *pdev, uint8_t lun,
                                      uint32_t blk_offset, uint32_t blk_nbr)
 {
+
   if (hmsc == NULL)
   {
     return -1;
@@ -1040,7 +1038,9 @@ static int8_t SCSI_ProcessRead(USBD_HandleTypeDef *pdev, uint8_t lun)
 
   len = MIN(len, MSC_MEDIA_PACKET);
 
-	if (fops_msc_p->Read(lun,hmsc->bot_data, hmsc->scsi_blk_addr, (len / hmsc->scsi_blk_size)) < 0)
+  if ( fops_msc_p->Read(lun,hmsc->bot_data,
+                         hmsc->scsi_blk_addr,
+                         (len / hmsc->scsi_blk_size)) < 0)
   {
     SCSI_SenseCode(pdev, lun, HARDWARE_ERROR, UNRECOVERED_READ_ERROR);
     return -1;
@@ -1079,7 +1079,9 @@ static int8_t SCSI_ProcessWrite(USBD_HandleTypeDef *pdev, uint8_t lun)
 
   len = MIN(len, MSC_MEDIA_PACKET);
 
-	if (fops_msc_p->Write(lun,hmsc->bot_data, hmsc->scsi_blk_addr,(len / hmsc->scsi_blk_size)) < 0)
+  if (fops_msc_p->Write(lun,hmsc->bot_data,
+                        hmsc->scsi_blk_addr,
+                        (len / hmsc->scsi_blk_size)) < 0)
   {
     SCSI_SenseCode(pdev, lun, HARDWARE_ERROR, WRITE_FAULT);
     return -1;

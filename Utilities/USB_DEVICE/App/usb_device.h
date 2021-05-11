@@ -32,10 +32,6 @@
 #include "stm32h7xx_hal.h"
 #include "usbd_def.h"
 
-/* USER CODE BEGIN INCLUDE */
-
-/* USER CODE END INCLUDE */
-
 /** @addtogroup USBD_OTG_DRIVER
   * @{
   */
@@ -51,21 +47,12 @@
   */
 
 /* Private variables ---------------------------------------------------------*/
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
-
 /* Private function prototypes -----------------------------------------------*/
-/* USER CODE BEGIN PFP */
-
-/* USER CODE END PFP */
 
 /*
  * -- Insert your variables declaration here --
  */
-/* USER CODE BEGIN VARIABLES */
 
-/* USER CODE END VARIABLES */
 /**
   * @}
   */
@@ -81,9 +68,7 @@ void MX_USB_DEVICE_Init(void);
 /*
  * -- Insert functions declaration here --
  */
-/* USER CODE BEGIN FD */
 
-/* USER CODE END FD */
 /**
   * @}
   */

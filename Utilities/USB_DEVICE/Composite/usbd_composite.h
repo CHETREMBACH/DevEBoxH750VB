@@ -13,7 +13,6 @@
 #endif
 
 #include "usbd_ioreq.h"
-#include "usbd_cdc_if.h"
 //#include "usbd_custom_hid_if.h"
 
 #define MAX_CLASSES 2
@@ -49,7 +48,7 @@ extern int out_endpoint_to_class[MAX_ENDPOINTS];
 void USBD_Composite_Set_Descriptor(uint8_t *descriptor, uint16_t size);
 void USBD_Composite_Set_Classes(USBD_ClassTypeDef *classes[],uint8_t num,USB_ConfigDescType* base_desc);
 void USBD_Composite_Set_fops(USBD_ItfTypeDef *fops0, USBD_ItfTypeDef *fops1);
-uint8_t  USBD_Composite_RegisterInterface  (USBD_HandleTypeDef   *pdev);
+uint8_t USBD_Composite_RegisterInterface  (USBD_HandleTypeDef   *pdev);
 void USBD_Composite_EPIN_To_Class(uint8_t ep,uint8_t classid);
 void USBD_Composite_EPOUT_To_Class(uint8_t ep,uint8_t classid);
 void USBD_Composite_InterfaceToClass(uint8_t ifid, uint8_t clsid);

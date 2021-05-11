@@ -194,7 +194,7 @@ void HAL_PCD_SOFCallback(PCD_HandleTypeDef *hpcd)
 
 
 uint8_t USBD_MSC_DeInit(USBD_HandleTypeDef *pdev, uint8_t cfgidx);
-uint8_t USBD_CDC_DeInit(USBD_HandleTypeDef *pdev, uint8_t cfgidx);
+uint8_t USBD_CDCA_DeInit(USBD_HandleTypeDef *pdev, uint8_t cfgidx);
 
 /**
   * @brief  Reset callback.
@@ -227,7 +227,7 @@ void HAL_PCD_ResetCallback(PCD_HandleTypeDef *hpcd)
   /* DeInitialize  the mass storage configuration */
   USBD_MSC_DeInit((USBD_HandleTypeDef*)hpcd->pData, 0);	
   /* DeInitialize  the mass storage configuration */
-  USBD_CDC_DeInit((USBD_HandleTypeDef*)hpcd->pData, 0);		
+  USBD_CDCA_DeInit((USBD_HandleTypeDef*)hpcd->pData, 0);		
 	
   USBD_LL_Reset((USBD_HandleTypeDef*)hpcd->pData);
 }
@@ -381,31 +381,6 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
 		HAL_PCD_RegisterIsoOutIncpltCallback(&hpcd_USB_OTG_FS, PCD_ISOOUTIncompleteCallback);
 		HAL_PCD_RegisterIsoInIncpltCallback(&hpcd_USB_OTG_FS, PCD_ISOINIncompleteCallback);
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
-		
-        //HAL_PCDEx_SetRxFiFo(&hpcd_USB_OTG_FS, 0x200);
-        //HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 0, 0x80);
-        //HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 1, 0x174);
-        		
-        //// HID interface
-        // interrupt IN EP 0x83
-        //// interface for application
-        // Bulk IN EP 0x84
-        // Bulk OUT EP 0x04
-        // interrupt IN EP 0x85
-        // ISO IN EP 0x86
-        ////IAD Link both CDC interfaces
-        //// CDC Control interface
-        // Interrupt IN EP 0x82
-        //// CDC Data interface
-        // Bulk IN EP 0x81
-        // Bulk OUT EP 0x01		
-        		
-        //#define CDC_CMD_EP      0x82U  /* EP2 for CDC commands */
-        //#define CDC_IN_EP       0x83U  /* EP1 for data IN */
-        //#define CDC_OUT_EP      0x03U  /* EP1 for data OUT */		
-        //#define MSC_EPIN_ADDR   0x81U
-        //#define MSC_EPOUT_ADDR  0x01U
-		
 		/* RX buffer is a big as the biggest one */
 		HAL_PCDEx_SetRxFiFo(&hpcd_USB_OTG_FS, 512);
 

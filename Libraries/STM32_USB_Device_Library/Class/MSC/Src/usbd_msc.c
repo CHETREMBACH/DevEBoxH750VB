@@ -316,14 +316,6 @@ uint8_t USBD_MSC_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
 	}
 
 	hmsc = &msc_usbd;
-	
-	if (hmsc == NULL)
-	{
-		//pdev->pClassData = NULL;
-		return (uint8_t)USBD_EMEM;
-	}
-	//pdev->pClassData = (void *)hmsc;	
-		
 	/* Init the BOT  layer */
 	MSC_BOT_Init(pdev);
 
@@ -575,7 +567,7 @@ uint8_t USBD_MSC_RegisterStorage(USBD_HandleTypeDef *pdev, USBD_StorageTypeDef *
 	}
 
 	fops_msc_p = fops;	
-	//pdev->pUserData = fops;
+
 
 	return (uint8_t)USBD_OK;
 }

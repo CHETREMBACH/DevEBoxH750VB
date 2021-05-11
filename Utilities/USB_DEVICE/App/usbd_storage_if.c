@@ -233,7 +233,7 @@ int8_t STORAGE_IsWriteProtected_FS(uint8_t lun)
   */
 int8_t STORAGE_Read_FS(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len)
 {
-	ram_read(buf, blk_addr*RAM_SECTOR_SIZE, (uint32_t)blk_len*RAM_SECTOR_SIZE);	  
+  ram_read(buf, blk_addr*RAM_SECTOR_SIZE, (uint32_t)blk_len*RAM_SECTOR_SIZE);	  
   /* USER CODE BEGIN 6 */
   return (USBD_OK);
   /* USER CODE END 6 */
@@ -249,7 +249,7 @@ int8_t STORAGE_Read_FS(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t bl
   */
 int8_t STORAGE_Write_FS(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len)
 {
-	ram_write(buf, blk_addr*RAM_SECTOR_SIZE, (uint32_t)blk_len*RAM_SECTOR_SIZE);	
+  ram_write(buf, blk_addr*RAM_SECTOR_SIZE, (uint32_t)blk_len*RAM_SECTOR_SIZE);	
   /* USER CODE BEGIN 7 */
   return (USBD_OK);
   /* USER CODE END 7 */

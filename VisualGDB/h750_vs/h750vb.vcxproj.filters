@@ -353,9 +353,6 @@
     <ClInclude Include="..\..\Utilities\CRC\CRC16.h">
       <Filter>Utilites\CRC</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_cdc_if.h">
-      <Filter>Utilites\USB_DEVICE\App</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_desc.h">
       <Filter>Utilites\USB_DEVICE\App</Filter>
     </ClInclude>
@@ -409,6 +406,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Utilities\USB_DEVICE\Composite\usbd_composite.h">
       <Filter>Utilites\USB_DEVICE\Composite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdca.h">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_cdca_if.h">
+      <Filter>Utilites\USB_DEVICE\App</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -823,9 +826,6 @@
     <ClCompile Include="..\..\Config\startup_stm32h750xx.c">
       <Filter>Config</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_cdc_if.c">
-      <Filter>Utilites\USB_DEVICE\App</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_desc.c">
       <Filter>Utilites\USB_DEVICE\App</Filter>
     </ClCompile>
@@ -834,9 +834,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Utilities\USB_DEVICE\Target\usbd_conf.c">
       <Filter>Utilites\USB_DEVICE\Target</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Core\Src\usbd_core.c">
       <Filter>Libraries\STM32_USB_Device_Library\Core\Src</Filter>
@@ -876,6 +873,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Utilities\USB_DEVICE\Composite\usbd_composite.c">
       <Filter>Utilites\USB_DEVICE\Composite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdca.c">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_cdca_if.c">
+      <Filter>Utilites\USB_DEVICE\App</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

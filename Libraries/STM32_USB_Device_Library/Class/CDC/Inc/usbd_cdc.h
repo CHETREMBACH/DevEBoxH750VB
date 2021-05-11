@@ -41,13 +41,6 @@ extern "C" {
   * @{
   */
 
-#define CDC_CMD_INTERFACE_IDX                       0x1	   // Index of CDC_CMD interface	
-#define CDC_DATA_INTERFACE_IDX                      0x2	   // Index of CDC_DATA interface
-
-#define CDC_CMD_EP                                  0x83U  /* EP2 for CDC commands */
-#define CDC_IN_EP                                   0x82U  /* EP1 for data IN */
-#define CDC_OUT_EP                                  0x02U  /* EP1 for data OUT */
-
 #ifndef CDC_HS_BINTERVAL
 #define CDC_HS_BINTERVAL                            0x10U
 #endif /* CDC_HS_BINTERVAL */
@@ -86,7 +79,6 @@ extern "C" {
   * @}
   */
 
-
 /** @defgroup USBD_CORE_Exported_TypesDefinitions
   * @{
   */
@@ -111,7 +103,6 @@ typedef struct _USBD_CDC_Itf
   int8_t (* TransmitCplt)(uint8_t *Buf, uint32_t *Len, uint8_t epnum);
 } USBD_CDC_ItfTypeDef;
 
-
 typedef struct
 {
   uint32_t data[CDC_DATA_HS_MAX_PACKET_SIZE / 4U];      /* Force 32bits alignment */
@@ -126,42 +117,7 @@ typedef struct
   __IO uint32_t RxState;
 } USBD_CDC_HandleTypeDef;
 
-
-
-/** @defgroup USBD_CORE_Exported_Macros
-  * @{
-  */
-
-/**
-  * @}
-  */
-
-/** @defgroup USBD_CORE_Exported_Variables
-  * @{
-  */
-
-extern USBD_ClassTypeDef USBD_CDC;
-#define USBD_CDC_CLASS &USBD_CDC
-/**
-  * @}
-  */
-
-/** @defgroup USB_CORE_Exported_Functions
-  * @{
-  */
-uint8_t USBD_CDC_RegisterInterface(USBD_HandleTypeDef *pdev,
-                                   USBD_CDC_ItfTypeDef *fops);
-
-uint8_t USBD_CDC_SetTxBuffer(USBD_HandleTypeDef *pdev, uint8_t *pbuff,
-                             uint32_t length);
-
-uint8_t USBD_CDC_SetRxBuffer(USBD_HandleTypeDef *pdev, uint8_t *pbuff);
-uint8_t USBD_CDC_ReceivePacket(USBD_HandleTypeDef *pdev);
-uint8_t USBD_CDC_TransmitPacket(USBD_HandleTypeDef *pdev);
-/**
-  * @}
-  */
-
+	
 #ifdef __cplusplus
 }
 #endif
