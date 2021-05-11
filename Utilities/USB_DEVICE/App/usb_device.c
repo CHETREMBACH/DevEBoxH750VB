@@ -26,15 +26,18 @@
 #include "usbd_composite.h"
 #include "usbd_cdca_if.h"
 #include "usbd_cdca.h"
+#include "usbd_cdcb_if.h"
+#include "usbd_cdcb.h"
 
 /* USB Device Core handle declaration. */
 USBD_HandleTypeDef hUsbDeviceFS;
 void Error_Handler(void);
 
 #define MSC_IDX                  0x0		
-#define CDCA_IDX                 0x1		
+#define CDCA_IDX                 0x1
+#define CDCB_IDX                 0x2
 
-USBD_ClassTypeDef* handles[2];
+USBD_ClassTypeDef* handles[3];
 
 /**
   * Init USB device Library, add supported class and start the library
@@ -44,6 +47,7 @@ void MX_USB_DEVICE_Init(void)
 {
 	handles[MSC_IDX] =  &USBD_MSC;	
 	handles[CDCA_IDX] = &USBD_CDCA;
+	handles[CDCB_IDX] = &USBD_CDCB;	
 	
 	// Base Descriptor
 	USB_ConfigDescType base_desc = {
@@ -54,7 +58,7 @@ void MX_USB_DEVICE_Init(void)
 		/* bDescriptorType: Configuration */
 		0x00,
 		/* wTotalLength:no of returned bytes. Is set later by composite */
-		0x03,
+		0x05,
 		/* bNumInterfaces */
 		0x01,
 		/* bConfigurationValue: Configuration value */
@@ -73,20 +77,27 @@ void MX_USB_DEVICE_Init(void)
 		Error_Handler();
 	}
 	// Add descriptors and class functions to composite device
-	USBD_Composite_Set_Classes(handles, 2, &base_desc);
+	USBD_Composite_Set_Classes(handles, 3, &base_desc);
 	// Define endpoints
 	//MSC
 	USBD_Composite_EPIN_To_Class(MSC_EPIN_ADDR, MSC_IDX);
 	USBD_Composite_EPOUT_To_Class(MSC_EPOUT_ADDR, MSC_IDX);
 	USBD_Composite_InterfaceToClass(MSC_INTERFACE_IDX, MSC_IDX);
-	//CDC
+	//CDCA
 	USBD_Composite_EPIN_To_Class(CDCA_IN_EP, CDCA_IDX);
 	USBD_Composite_EPOUT_To_Class(CDCA_OUT_EP, CDCA_IDX);
 	USBD_Composite_EPIN_To_Class(CDCA_CMD_EP, CDCA_IDX);
 
 	USBD_Composite_InterfaceToClass(CDCA_CMD_INTERFACE_IDX, CDCA_IDX);
 	USBD_Composite_InterfaceToClass(CDCA_DATA_INTERFACE_IDX, CDCA_IDX);
+	//CDCB
+	USBD_Composite_EPIN_To_Class(CDCB_IN_EP, CDCB_IDX);
+	USBD_Composite_EPOUT_To_Class(CDCB_OUT_EP, CDCB_IDX);
+	USBD_Composite_EPIN_To_Class(CDCB_CMD_EP, CDCB_IDX);
 
+	USBD_Composite_InterfaceToClass(CDCB_CMD_INTERFACE_IDX, CDCB_IDX);
+	USBD_Composite_InterfaceToClass(CDCB_DATA_INTERFACE_IDX, CDCB_IDX);	
+	
 	if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_Composite) != USBD_OK)
 	{
 		Error_Handler();
@@ -96,12 +107,17 @@ void MX_USB_DEVICE_Init(void)
 	{
 		Error_Handler();
 	}
+
+	if (USBD_CDCB_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_cdcb_FS) != USBD_OK)
+	{
+		Error_Handler();
+	}	
 	
 	if (USBD_MSC_RegisterStorage(&hUsbDeviceFS, &USBD_Storage_Interface_fops_FS) != USBD_OK)
 	{
 		Error_Handler();
 	}
-
+	
 	if (USBD_Start(&hUsbDeviceFS) != USBD_OK)
 	{
 		Error_Handler();
