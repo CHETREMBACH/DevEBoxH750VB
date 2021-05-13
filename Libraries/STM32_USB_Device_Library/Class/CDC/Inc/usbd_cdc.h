@@ -41,6 +41,35 @@ extern "C" {
   * @{
   */
 
+#define CDCA_CMD_INTERFACE_IDX                       0x0	// Index of CDCA_CMD interface	
+#define CDCA_DATA_INTERFACE_IDX                      0x1	// Index of CDCA_DATA interface
+
+#define CDCA_CMD_EP                                  0x82U  /* EP2 for CDC commands */
+#define CDCA_IN_EP                                   0x81U  /* EP1 for data IN */
+#define CDCA_OUT_EP                                  0x01U  /* EP1 for data OUT */
+//---------------------------------------------------------------------------------------------
+#define CDCB_CMD_INTERFACE_IDX                       ( CDCA_CMD_INTERFACE_IDX  + 2 )
+#define CDCB_DATA_INTERFACE_IDX                      ( CDCA_DATA_INTERFACE_IDX + 2 )
+
+#define CDCB_CMD_EP                                  ( CDCA_CMD_EP + 2 )           
+#define CDCB_IN_EP                                   ( CDCA_IN_EP  + 2 )           
+#define CDCB_OUT_EP                                  ( CDCA_OUT_EP + 2 )           
+//---------------------------------------------------------------------------------------------
+#define CDCC_CMD_INTERFACE_IDX                       ( CDCA_CMD_INTERFACE_IDX  + 4 )
+#define CDCC_DATA_INTERFACE_IDX                      ( CDCA_DATA_INTERFACE_IDX + 4 )
+
+#define CDCC_CMD_EP                                  ( CDCA_CMD_EP + 4 )           
+#define CDCC_IN_EP                                   ( CDCA_IN_EP  + 4 )           
+#define CDCC_OUT_EP                                  ( CDCA_OUT_EP + 4 )           
+//---------------------------------------------------------------------------------------------	
+#define CDCD_CMD_INTERFACE_IDX                       ( CDCA_CMD_INTERFACE_IDX  + 6 )
+#define CDCD_DATA_INTERFACE_IDX                      ( CDCA_DATA_INTERFACE_IDX + 6 )
+
+#define CDCD_CMD_EP                                  ( CDCA_CMD_EP + 6 )           
+#define CDCD_IN_EP                                   ( CDCA_IN_EP  + 6 )           
+#define CDCD_OUT_EP                                  ( CDCA_OUT_EP + 6 )           
+//---------------------------------------------------------------------------------------------	
+	
 #ifndef CDC_HS_BINTERVAL
 #define CDC_HS_BINTERVAL                            0x10U
 #endif /* CDC_HS_BINTERVAL */

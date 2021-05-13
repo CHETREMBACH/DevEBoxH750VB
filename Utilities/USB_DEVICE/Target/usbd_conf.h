@@ -64,7 +64,7 @@
   */
 
 /*---------- -----------*/
-#define USBD_MAX_NUM_INTERFACES        7U
+#define USBD_MAX_NUM_INTERFACES        8U
 /*---------- -----------*/
 #define USBD_MAX_NUM_CONFIGURATION     1U
 /*---------- -----------*/

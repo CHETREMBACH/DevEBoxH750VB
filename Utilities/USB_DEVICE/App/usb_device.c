@@ -37,11 +37,11 @@
 USBD_HandleTypeDef hUsbDeviceFS;
 void Error_Handler(void);
 
-#define MSC_IDX                  0x0		
-#define CDCA_IDX                 0x1
-#define CDCB_IDX                 0x2
-#define CDCC_IDX                 0x3
-#define CDCD_IDX                 0x4
+//#define MSC_IDX                  0x0		
+#define CDCA_IDX                 0x0
+#define CDCB_IDX                 0x1
+#define CDCC_IDX                 0x2
+#define CDCD_IDX                 0x3
 
 
 USBD_ClassTypeDef* handles[MAX_CLASSES];
@@ -52,7 +52,7 @@ USBD_ClassTypeDef* handles[MAX_CLASSES];
   */
 void MX_USB_DEVICE_Init(void)
 {
-	handles[MSC_IDX] =  &USBD_MSC;	
+	//handles[MSC_IDX] =  &USBD_MSC;	
 	handles[CDCA_IDX] = &USBD_CDCA;
 	handles[CDCB_IDX] = &USBD_CDCB;	
 	handles[CDCC_IDX] = &USBD_CDCC;
@@ -85,9 +85,9 @@ void MX_USB_DEVICE_Init(void)
 	USBD_Composite_Set_Classes(handles, 4, &base_desc);
 	// Define endpoints
 	//MSC
-	USBD_Composite_EPIN_To_Class(MSC_EPIN_ADDR, MSC_IDX);
-	USBD_Composite_EPOUT_To_Class(MSC_EPOUT_ADDR, MSC_IDX);
-	USBD_Composite_InterfaceToClass(MSC_INTERFACE_IDX, MSC_IDX);
+//	USBD_Composite_EPIN_To_Class(MSC_EPIN_ADDR, MSC_IDX);
+//	USBD_Composite_EPOUT_To_Class(MSC_EPOUT_ADDR, MSC_IDX);
+//	USBD_Composite_InterfaceToClass(MSC_INTERFACE_IDX, MSC_IDX);
 	//CDCA
 	USBD_Composite_EPIN_To_Class(CDCA_IN_EP, CDCA_IDX);
 	USBD_Composite_EPOUT_To_Class(CDCA_OUT_EP, CDCA_IDX);
@@ -111,14 +111,14 @@ void MX_USB_DEVICE_Init(void)
 
 	USBD_Composite_InterfaceToClass(CDCC_CMD_INTERFACE_IDX, CDCC_IDX);
 	USBD_Composite_InterfaceToClass(CDCC_DATA_INTERFACE_IDX, CDCC_IDX);	
-//	
-//	//CDCD
-//	USBD_Composite_EPIN_To_Class(CDCD_IN_EP, CDCD_IDX);
-//	USBD_Composite_EPOUT_To_Class(CDCD_OUT_EP, CDCD_IDX);
-//	USBD_Composite_EPIN_To_Class(CDCD_CMD_EP, CDCD_IDX);
-//
-//	USBD_Composite_InterfaceToClass(CDCD_CMD_INTERFACE_IDX, CDCD_IDX);
-//	USBD_Composite_InterfaceToClass(CDCD_DATA_INTERFACE_IDX, CDCD_IDX);	
+	
+	//CDCD
+	USBD_Composite_EPIN_To_Class(CDCD_IN_EP, CDCD_IDX);
+	USBD_Composite_EPOUT_To_Class(CDCD_OUT_EP, CDCD_IDX);
+	USBD_Composite_EPIN_To_Class(CDCD_CMD_EP, CDCD_IDX);
+
+	USBD_Composite_InterfaceToClass(CDCD_CMD_INTERFACE_IDX, CDCD_IDX);
+	USBD_Composite_InterfaceToClass(CDCD_DATA_INTERFACE_IDX, CDCD_IDX);	
 	
 	if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_Composite) != USBD_OK)
 	{
@@ -139,16 +139,16 @@ void MX_USB_DEVICE_Init(void)
 	{
 		Error_Handler();
 	}
-//
-//	if (USBD_CDCD_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_cdcd_FS) != USBD_OK)
-//	{
-//		Error_Handler();
-//	}		
-	
-	if (USBD_MSC_RegisterStorage(&hUsbDeviceFS, &USBD_Storage_Interface_fops_FS) != USBD_OK)
+
+	if (USBD_CDCD_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_cdcd_FS) != USBD_OK)
 	{
 		Error_Handler();
-	}
+	}		
+	
+//	if (USBD_MSC_RegisterStorage(&hUsbDeviceFS, &USBD_Storage_Interface_fops_FS) != USBD_OK)
+//	{
+//		Error_Handler();
+//	}
 	
 	if (USBD_Start(&hUsbDeviceFS) != USBD_OK)
 	{

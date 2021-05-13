@@ -382,7 +382,7 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
 		HAL_PCD_RegisterIsoInIncpltCallback(&hpcd_USB_OTG_FS, PCD_ISOINIncompleteCallback);
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
 		/* RX buffer is a big as the biggest one */
-		HAL_PCDEx_SetRxFiFo(&hpcd_USB_OTG_FS, 512);
+		HAL_PCDEx_SetRxFiFo(&hpcd_USB_OTG_FS, 756);
 
 		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 0, 0x40); 
 		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 1, 0x40); 

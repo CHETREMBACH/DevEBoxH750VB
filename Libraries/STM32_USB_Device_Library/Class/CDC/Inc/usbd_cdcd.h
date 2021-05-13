@@ -42,15 +42,7 @@ extern "C" {
 /** @defgroup USBD_CDCD_Exported_Defines
   * @{
   */
-
-#define CDCD_CMD_INTERFACE_IDX                       0x7	// Index of CDCA_CMD interface	
-#define CDCD_DATA_INTERFACE_IDX                      0x8	// Index of CDCA_DATA interface
-
-#define CDCD_CMD_EP                                  0x89U  /* EP2 for CDC commands */
-#define CDCD_IN_EP                                   0x88U  /* EP1 for data IN */
-#define CDCD_OUT_EP                                  0x08U  /* EP1 for data OUT */
-
-
+	
 extern USBD_ClassTypeDef USBD_CDCD;
 #define USBD_CDCD_CLASS &USBD_CDCD
 
