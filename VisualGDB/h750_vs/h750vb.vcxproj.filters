@@ -419,6 +419,18 @@
     <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdcb.h">
       <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Inc</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcc_if.h">
+      <Filter>Utilites\USB_DEVICE\App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcd_if.h">
+      <Filter>Utilites\USB_DEVICE\App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdcc.h">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdcd.h">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Libraries\FreeRTOS\Source\croutine.c">
@@ -890,6 +902,18 @@
       <Filter>Utilites\USB_DEVICE\App</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdcb.c">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcc_if.c">
+      <Filter>Utilites\USB_DEVICE\App</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcd_if.c">
+      <Filter>Utilites\USB_DEVICE\App</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdcc.c">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdcd.c">
       <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Src</Filter>
     </ClCompile>
   </ItemGroup>

@@ -15,9 +15,9 @@
 #include "usbd_ioreq.h"
 //#include "usbd_custom_hid_if.h"
 
-#define MAX_CLASSES 3
+#define MAX_CLASSES 5
 #define MAX_ENDPOINTS 16
-#define CONFIG_DESC_BUF_SIZE 256
+#define CONFIG_DESC_BUF_SIZE 512U
 
  typedef struct USBD_ItfTypeDef
  {

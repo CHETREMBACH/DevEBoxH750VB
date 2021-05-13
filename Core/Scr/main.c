@@ -88,7 +88,7 @@ int main(void)
 	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
 	HAL_Init();	
 	/* Init thread */
-	xTaskCreate(system_thread, (const char*)"SysTask", configMINIMAL_STACK_SIZE * 2, NULL, TreadPrioNormal, NULL);	
+	xTaskCreate(system_thread, (const char*)"SysTask", configMINIMAL_STACK_SIZE * 5, NULL, TreadPrioNormal, NULL);	
 	/* Start scheduler */
 	vTaskStartScheduler();  
 	/* We should never get here as control is now taken by the scheduler */

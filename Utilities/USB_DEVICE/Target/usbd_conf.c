@@ -351,7 +351,7 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
 		pdev->pData = &hpcd_USB_OTG_FS;
 
 		hpcd_USB_OTG_FS.Instance = USB_OTG_FS;
-		hpcd_USB_OTG_FS.Init.dev_endpoints = 9;
+		hpcd_USB_OTG_FS.Init.dev_endpoints = 15;
 		hpcd_USB_OTG_FS.Init.speed = PCD_SPEED_FULL;
 		hpcd_USB_OTG_FS.Init.dma_enable = DISABLE;
 		hpcd_USB_OTG_FS.Init.phy_itface = PCD_PHY_EMBEDDED;
@@ -390,6 +390,10 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
 		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 3, 0x80);
 		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 4, 0x40);
 		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 5, 0x80);		
+		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 6, 0x40);
+		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 7, 0x80);
+		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 8, 0x40);
+		HAL_PCDEx_SetTxFiFo(&hpcd_USB_OTG_FS, 9, 0x80);				
 		
 	}
 	return USBD_OK;

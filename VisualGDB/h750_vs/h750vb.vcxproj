@@ -209,6 +209,8 @@
     <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_usb.c" />
     <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdca.c" />
     <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdcb.c" />
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdcc.c" />
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdcd.c" />
     <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Src\usbd_msc.c" />
     <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Src\usbd_msc_bot.c" />
     <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Src\usbd_msc_data.c" />
@@ -235,6 +237,8 @@
     <ClCompile Include="..\..\Utilities\uart_dbg\uart_dbg.c" />
     <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_cdca_if.c" />
     <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcb_if.c" />
+    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcc_if.c" />
+    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcd_if.c" />
     <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_desc.c" />
     <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_storage_if.c" />
     <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usb_device.c" />
@@ -293,6 +297,8 @@
     <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h" />
     <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdca.h" />
     <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdcb.h" />
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdcc.h" />
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdcd.h" />
     <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Inc\usbd_msc.h" />
     <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Inc\usbd_msc_bot.h" />
     <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Inc\usbd_msc_data.h" />
@@ -320,6 +326,8 @@
     <ClInclude Include="..\..\Utilities\uart_dbg\uart_dbg.h" />
     <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_cdca_if.h" />
     <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcb_if.h" />
+    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcc_if.h" />
+    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcd_if.h" />
     <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_desc.h" />
     <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_storage_if.h" />
     <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usb_device.h" />
