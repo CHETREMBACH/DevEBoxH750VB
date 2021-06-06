@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
-  * @file    USB_Device/AUDIO_Standalone/Inc/usbd_desc.h
+  * @file    USB_Device/AUDIO_Standalone/Inc/usbd_audio_if.h
   * @author  MCD Application Team
-  * @brief   Header for usbd_desc.c module
+  * @brief   Header for usbd_audio_if.c file.
   ******************************************************************************
   * @attention
   *
@@ -18,23 +18,19 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __USBD_DESC_H
-#define __USBD_DESC_H
+#ifndef __USBD_AUDIO_IF_H
+#define __USBD_AUDIO_IF_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "usbd_def.h"
+#include "usbd_audio.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
-#define         DEVICE_ID1          (0x5C001000)
-#define         DEVICE_ID2          (0x5C001004)
-#define         DEVICE_ID3          (0x5C001008)
+extern USBD_AUDIO_ItfTypeDef  USBD_AUDIO_fops;
 
-#define  USB_SIZ_STRING_SERIAL       0x1A
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
-extern USBD_DescriptorsTypeDef AUDIO_Desc;
 
-#endif /* __USBD_DESC_H */
- 
+#endif /* __USBD_AUDIO_IF_H */
+
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

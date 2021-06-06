@@ -103,15 +103,6 @@
     <Filter Include="Libraries\STM32_USB_Device_Library\Class">
       <UniqueIdentifier>{575d66d8-8396-4b2b-bd96-79654cd98f0e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries\STM32_USB_Device_Library\Class\CDC">
-      <UniqueIdentifier>{58252d87-57f7-44a4-943c-d795bfd05812}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\STM32_USB_Device_Library\Class\CDC\Inc">
-      <UniqueIdentifier>{e7ee2400-04b6-447f-bfa9-b8a7f6c0d5e1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\STM32_USB_Device_Library\Class\CDC\Src">
-      <UniqueIdentifier>{3f09f074-f696-48e9-b5fb-f758b6588f71}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Libraries\STM32_USB_Device_Library\Core">
       <UniqueIdentifier>{071c654d-3950-4e92-ae55-af1168f2bc1c}</UniqueIdentifier>
     </Filter>
@@ -121,23 +112,20 @@
     <Filter Include="Libraries\STM32_USB_Device_Library\Core\Src">
       <UniqueIdentifier>{7276526b-b8bc-484d-953b-35d2dbaa5f37}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries\STM32_USB_Device_Library\Class\MSC">
-      <UniqueIdentifier>{a5aa2d69-f5c2-43c5-8350-43f0eefa6a71}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\STM32_USB_Device_Library\Class\MSC\Src">
-      <UniqueIdentifier>{4a70e22c-016a-48bd-8af6-39467676a396}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\STM32_USB_Device_Library\Class\MSC\Inc">
-      <UniqueIdentifier>{ef5ffb60-bd0b-4a87-8f11-d2c2059fee5a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Utilites\ram_disk_drv">
       <UniqueIdentifier>{4dff229e-d2aa-4ffd-af2f-48d7d839302f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Utilites\disk_test_cmd">
       <UniqueIdentifier>{76f86cfe-6ddb-490e-9a2d-6113d932519e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utilites\USB_DEVICE\Composite">
-      <UniqueIdentifier>{10280ede-0300-4188-9d4b-f377b1412600}</UniqueIdentifier>
+    <Filter Include="Libraries\STM32_USB_Device_Library\Class\AUDIO">
+      <UniqueIdentifier>{a89fdf22-0a3a-4888-a99e-e617a2391ae0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\STM32_USB_Device_Library\Class\AUDIO\Inc">
+      <UniqueIdentifier>{a5dc47f6-63de-4303-9fb6-9ebfdbf65cd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\STM32_USB_Device_Library\Class\AUDIO\Src">
+      <UniqueIdentifier>{b039bd56-204a-4808-8fc0-cd8f198ebc10}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -362,9 +350,6 @@
     <ClInclude Include="..\..\Utilities\USB_DEVICE\Target\usbd_conf.h">
       <Filter>Utilites\USB_DEVICE\Target</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Inc</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Core\Inc\usbd_core.h">
       <Filter>Libraries\STM32_USB_Device_Library\Core\Inc</Filter>
     </ClInclude>
@@ -377,21 +362,6 @@
     <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h">
       <Filter>Libraries\STM32_USB_Device_Library\Core\Inc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Inc\usbd_msc.h">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Inc\usbd_msc_bot.h">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Inc\usbd_msc_data.h">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Inc\usbd_msc_scsi.h">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_storage_if.h">
-      <Filter>Utilites\USB_DEVICE\App</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Utilities\ram_disk_drv\ram_disk.h">
       <Filter>Utilites\ram_disk_drv</Filter>
     </ClInclude>
@@ -403,33 +373,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Utilities\disk_test_cmd\test_cmd_disk.h">
       <Filter>Utilites\disk_test_cmd</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Utilities\USB_DEVICE\Composite\usbd_composite.h">
-      <Filter>Utilites\USB_DEVICE\Composite</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdca.h">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_cdca_if.h">
-      <Filter>Utilites\USB_DEVICE\App</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcb_if.h">
-      <Filter>Utilites\USB_DEVICE\App</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdcb.h">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcc_if.h">
-      <Filter>Utilites\USB_DEVICE\App</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcd_if.h">
-      <Filter>Utilites\USB_DEVICE\App</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdcc.h">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdcd.h">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Inc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_cordic.h">
       <Filter>Libraries\STM32F4xx_HAL_Driver\Inc</Filter>
@@ -766,6 +709,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_wwdg.h">
       <Filter>Libraries\STM32F4xx_HAL_Driver\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Utilities\USB_DEVICE\App\usbd_audio_if.h">
+      <Filter>Utilites\USB_DEVICE\App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\AUDIO\Inc\usbd_audio.h">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\AUDIO\Inc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1198,21 +1147,6 @@
     <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c">
       <Filter>Libraries\STM32_USB_Device_Library\Core\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Src\usbd_msc.c">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Src\usbd_msc_bot.c">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Src\usbd_msc_data.c">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\MSC\Src\usbd_msc_scsi.c">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\MSC\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_storage_if.c">
-      <Filter>Utilites\USB_DEVICE\App</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Utilities\ram_disk_drv\ram_disk.c">
       <Filter>Utilites\ram_disk_drv</Filter>
     </ClCompile>
@@ -1225,32 +1159,11 @@
     <ClCompile Include="..\..\Utilities\disk_test_cmd\test_cmd_disk.c">
       <Filter>Utilites\disk_test_cmd</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Utilities\USB_DEVICE\Composite\usbd_composite.c">
-      <Filter>Utilites\USB_DEVICE\Composite</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdca.c">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_cdca_if.c">
+    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_audio_if.c">
       <Filter>Utilites\USB_DEVICE\App</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcb_if.c">
-      <Filter>Utilites\USB_DEVICE\App</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdcb.c">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcc_if.c">
-      <Filter>Utilites\USB_DEVICE\App</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Utilities\USB_DEVICE\App\usbd_cdcd_if.c">
-      <Filter>Utilites\USB_DEVICE\App</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdcc.c">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdcd.c">
-      <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Src</Filter>
+    <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\AUDIO\Src\usbd_audio.c">
+      <Filter>Libraries\STM32_USB_Device_Library\Class\AUDIO\Src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

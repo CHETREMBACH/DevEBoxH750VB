@@ -15,7 +15,32 @@
 /* Includes ------------------------------------------------------------------*/
 #include "pin_dbg.h"
 
+/**
+  * @brief  функция - пауза для тестирования
+  * @param  uint32_t - size_delay размер паузы
+  * @retval none
+  */
+void dl_tst(uint32_t size_delay)
+{
+	for (uint32_t cnt_time = 0; cnt_time < size_delay; cnt_time++)
+	{
+		__asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop");
+		__asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop");
+		__asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop");
+		__asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop");
+		__asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop");
+		__asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop");
+		__asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop");	
+		__asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop");
+		__asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop");	
+		__asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop");
+		__asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop"); __asm volatile("nop");			
+	}
+}
+
+
 #if  (DBG_PIN_ENABLE == 1)
+
 /**
   * @brief  Инициализация GPIO для отладки.
   * @param  None
@@ -53,20 +78,20 @@ void hal_debug_pin_init(void)
 	HAL_GPIO_Init(T5_PORT, &GPIO_InitStruct);
 	T5_LO;
 	
-	T6_CLK_ENABLE();
-	GPIO_InitStruct.Pin       = T6_PIN;
-	HAL_GPIO_Init(T6_PORT, &GPIO_InitStruct);
-	T6_LO;
-	
-	T7_CLK_ENABLE();
-	GPIO_InitStruct.Pin       = T7_PIN;
-	HAL_GPIO_Init(T7_PORT, &GPIO_InitStruct);
-	T7_LO;
-	
-	T8_CLK_ENABLE();
-	GPIO_InitStruct.Pin       = T8_PIN;
-	HAL_GPIO_Init(T8_PORT, &GPIO_InitStruct);
-	T8_LO;	
+//	T6_CLK_ENABLE();
+//	GPIO_InitStruct.Pin       = T6_PIN;
+//	HAL_GPIO_Init(T6_PORT, &GPIO_InitStruct);
+//	T6_LO;
+//	
+//	T7_CLK_ENABLE();
+//	GPIO_InitStruct.Pin       = T7_PIN;
+//	HAL_GPIO_Init(T7_PORT, &GPIO_InitStruct);
+//	T7_LO;
+//	
+//	T8_CLK_ENABLE();
+//	GPIO_InitStruct.Pin       = T8_PIN;
+//	HAL_GPIO_Init(T8_PORT, &GPIO_InitStruct);
+//	T8_LO;	
 	
 }
 

@@ -20,31 +20,11 @@
 
 #include "usb_device.h"
 #include "usbd_core.h"
+#include "usbd_audio.h"
 #include "usbd_desc.h"
-#include "usbd_msc.h"
-#include "usbd_storage_if.h"
-#include "usbd_composite.h"
-#include "usbd_cdca_if.h"
-#include "usbd_cdca.h"
-#include "usbd_cdcb_if.h"
-#include "usbd_cdcb.h"
-#include "usbd_cdcc_if.h"
-#include "usbd_cdcc.h"
-#include "usbd_cdcd_if.h"
-#include "usbd_cdcd.h"
+#include "usbd_audio_if.h"
 
-/* USB Device Core handle declaration. */
-USBD_HandleTypeDef hUsbDeviceFS;
-void Error_Handler(void);
-
-//#define MSC_IDX                  0x0		
-#define CDCA_IDX                 0x0
-#define CDCB_IDX                 0x1
-#define CDCC_IDX                 0x2
-#define CDCD_IDX                 0x3
-
-
-USBD_ClassTypeDef* handles[MAX_CLASSES];
+USBD_HandleTypeDef USBD_Device;
 
 /**
   * Init USB device Library, add supported class and start the library
@@ -52,110 +32,19 @@ USBD_ClassTypeDef* handles[MAX_CLASSES];
   */
 void MX_USB_DEVICE_Init(void)
 {
-	//handles[MSC_IDX] =  &USBD_MSC;	
-	handles[CDCA_IDX] = &USBD_CDCA;
-	handles[CDCB_IDX] = &USBD_CDCB;	
-	handles[CDCC_IDX] = &USBD_CDCC;
-	handles[CDCD_IDX] = &USBD_CDCD;		
-	
-	
-	// Base Descriptor
-	USB_ConfigDescType base_desc = {
-    /*Configuration Descriptor*/
-		0x09,
-		/* bLength: Configuration Descriptor size */
-		USB_DESC_TYPE_CONFIGURATION,
-		/* bDescriptorType: Configuration */
-		0x00,
-		/* wTotalLength:no of returned bytes. Is set later by composite */
-		USBD_MAX_NUM_INTERFACES, /* bNumInterfaces */
-		0x01, /* bConfigurationValue: Configuration value */
-		0x02, /* iConfiguration: Index of string descriptor describing the configuration */
-		0xC0, /* bmAttributes: self powered */
-		0x32, /* MaxPower 100 mA */
-    /* 09 bytes */
-	};	
-	
-	/* Init Device Library, add supported class and start the library. */
-	if (USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS) != USBD_OK)
-	{
-		Error_Handler();
-	}
-	// Add descriptors and class functions to composite device
-	USBD_Composite_Set_Classes(handles, 4, &base_desc);
-	// Define endpoints
-	//MSC
-//	USBD_Composite_EPIN_To_Class(MSC_EPIN_ADDR, MSC_IDX);
-//	USBD_Composite_EPOUT_To_Class(MSC_EPOUT_ADDR, MSC_IDX);
-//	USBD_Composite_InterfaceToClass(MSC_INTERFACE_IDX, MSC_IDX);
-	//CDCA
-	USBD_Composite_EPIN_To_Class(CDCA_IN_EP, CDCA_IDX);
-	USBD_Composite_EPOUT_To_Class(CDCA_OUT_EP, CDCA_IDX);
-	USBD_Composite_EPIN_To_Class(CDCA_CMD_EP, CDCA_IDX);
-
-	USBD_Composite_InterfaceToClass(CDCA_CMD_INTERFACE_IDX, CDCA_IDX);
-	USBD_Composite_InterfaceToClass(CDCA_DATA_INTERFACE_IDX, CDCA_IDX);
-	
-	//CDCB
-	USBD_Composite_EPIN_To_Class(CDCB_IN_EP, CDCB_IDX);
-	USBD_Composite_EPOUT_To_Class(CDCB_OUT_EP, CDCB_IDX);
-	USBD_Composite_EPIN_To_Class(CDCB_CMD_EP, CDCB_IDX);
-
-	USBD_Composite_InterfaceToClass(CDCB_CMD_INTERFACE_IDX, CDCB_IDX);
-	USBD_Composite_InterfaceToClass(CDCB_DATA_INTERFACE_IDX, CDCB_IDX);	
-	
-	//CDCC
-	USBD_Composite_EPIN_To_Class(CDCC_IN_EP, CDCC_IDX);
-	USBD_Composite_EPOUT_To_Class(CDCC_OUT_EP, CDCC_IDX);
-    USBD_Composite_EPIN_To_Class(CDCC_CMD_EP, CDCC_IDX);
-
-	USBD_Composite_InterfaceToClass(CDCC_CMD_INTERFACE_IDX, CDCC_IDX);
-	USBD_Composite_InterfaceToClass(CDCC_DATA_INTERFACE_IDX, CDCC_IDX);	
-	
-	//CDCD
-	USBD_Composite_EPIN_To_Class(CDCD_IN_EP, CDCD_IDX);
-	USBD_Composite_EPOUT_To_Class(CDCD_OUT_EP, CDCD_IDX);
-	USBD_Composite_EPIN_To_Class(CDCD_CMD_EP, CDCD_IDX);
-
-	USBD_Composite_InterfaceToClass(CDCD_CMD_INTERFACE_IDX, CDCD_IDX);
-	USBD_Composite_InterfaceToClass(CDCD_DATA_INTERFACE_IDX, CDCD_IDX);	
-	
-	if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_Composite) != USBD_OK)
-	{
-		Error_Handler();
-	}
-
-	if (USBD_CDCA_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_cdca_FS) != USBD_OK)
-	{
-		Error_Handler();
-	}
-
-	if (USBD_CDCB_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_cdcb_FS) != USBD_OK)
-	{
-		Error_Handler();
-	}	
-	
-	if (USBD_CDCC_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_cdcc_FS) != USBD_OK)
-	{
-		Error_Handler();
-	}
-
-	if (USBD_CDCD_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_cdcd_FS) != USBD_OK)
-	{
-		Error_Handler();
-	}		
-	
-//	if (USBD_MSC_RegisterStorage(&hUsbDeviceFS, &USBD_Storage_Interface_fops_FS) != USBD_OK)
-//	{
-//		Error_Handler();
-//	}
-	
-	if (USBD_Start(&hUsbDeviceFS) != USBD_OK)
-	{
-		Error_Handler();
-	}
-
 	HAL_PWREx_EnableUSBVoltageDetector();
+  
+	/* Init Device Library */
+	USBD_Init(&USBD_Device, &AUDIO_Desc, 0);
+
+	/* Add Supported Class */
+	USBD_RegisterClass(&USBD_Device, USBD_AUDIO_CLASS);
+
+	/* Add Interface callbacks for AUDIO Class */
+	USBD_AUDIO_RegisterInterface(&USBD_Device, &USBD_AUDIO_fops);
+
+	/* Start Device Process */
+	USBD_Start(&USBD_Device);
 }
 
 /**
