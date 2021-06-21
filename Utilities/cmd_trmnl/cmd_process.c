@@ -507,32 +507,18 @@ bool add_terminal_cmd(const cmd_t *p_cmp) {
   return true;
 }
 
-#include "cmd_freertos_cntrl.h"
-#include "cmd_qspi_flash.h"
-
 /**
- * @brief  terminal task
+ * @brief  terminal init
  * @param  pvParameters not used
  * @retval None
  */
-void terminal_task(void *pvParameters) {
-  /* Инициализация указателя на команду помощи                               */
-  help_cmd_init();
-  /* Инициализация указателя на команду управления сбросом микроконтроллера  */
-  reset_cmd_init();
-  /* Инициализация указателя на команду управления светодиодом               */
-  led_cmd_init();
-  /* Инициализация указателя на команду просмотра параметров Freertos        */
-  freertos_cmd_init();
-
-  /* Инициализация указателя на команды управления и тестирования qspi ram  */
-  qspi_flash_cmd_init();	
-
-	
-  for (;;) {
-    vTaskDelay(100);
-    /* функция полинга терминала команд */
-    terminal_cntrl();
-  }
+void terminal_init(void) {
+	/* Инициализация указателя на команду помощи                               */
+	help_cmd_init();
+	/* Инициализация указателя на команду управления сбросом микроконтроллера  */
+	reset_cmd_init();
+	/* Инициализация указателя на команду управления светодиодом               */
+	led_cmd_init();
 }
+
 /******************* (C) COPYRIGHT 2020 OneTiOne  *****END OF FILE****/

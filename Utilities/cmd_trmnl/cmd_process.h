@@ -102,11 +102,11 @@ extern cmd_t* array_cmd[MAX_SIZE_NUM_CMD];
 void terminal_cntrl( void );
 
 /**
-  * @brief  terminal task
-  * @param  pvParameters not used
-  * @retval None
-  */
-void terminal_task(void * pvParameters);
+ * @brief  terminal init
+ * @param  pvParameters not used
+ * @retval None
+ */
+void terminal_init(void);
 
 /**
   * @brief  terminal task

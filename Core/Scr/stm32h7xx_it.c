@@ -18,8 +18,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32h7xx_it.h"
-#include "FreeRTOS.h"
-#include "task.h"
+
 
 /* Private variables ---------------------------------------------------------*/
 extern TIM_HandleTypeDef    TimHandle;
@@ -97,14 +96,6 @@ void DebugMon_Handler(void)
 void SysTick_Handler(void)
 {
   HAL_IncTick();
-#if (INCLUDE_xTaskGetSchedulerState == 1 )
-  if (xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED)
-  {
-#endif /* INCLUDE_xTaskGetSchedulerState */
-  xPortSysTickHandler();
-#if (INCLUDE_xTaskGetSchedulerState == 1 )
-  }
-#endif /* INCLUDE_xTaskGetSchedulerState */
 }
 
 /******************************************************************************/

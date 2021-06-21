@@ -42,8 +42,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../../Core/Inc;../../Libraries/CMSIS/Core/Include;../../Libraries/CMSIS/Device/ST/STM32H7xx/Include;../../Libraries/FreeRTOS/Source/include;../../Libraries/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1;../../Libraries/STM32H7xx_HAL_Driver/Inc;../../Utilities\cmd_trmnl;../../Utilities\uart_dbg;../../Utilities/quadspi;../../Utilities/EEPROM_Emul/Core;../../Utilities/EEPROM_Emul/Porting/W25Q64JVS;../../Config;../../Utilities/CRC;../../Libraries/STM32H7xx_HAL_Driver/Src;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>flash_layout;HSE_VALUE=25000000;STM32H750xx;USE_FREERTOS;DEBUG=1;USE_FULL_LL_DRIVER;DBG_UART_ENABLE=1;DBG_PIN_ENABLE=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../Core/Inc;../../Libraries/CMSIS/Core/Include;../../Libraries/CMSIS/Device/ST/STM32H7xx/Include;../../Libraries/STM32H7xx_HAL_Driver/Inc;../../Utilities\cmd_trmnl;../../Utilities\uart_dbg;../../Config;../../Libraries/STM32H7xx_HAL_Driver/Src;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>flash_layout;HSE_VALUE=25000000;STM32H750xx;DEBUG=1;USE_FULL_LL_DRIVER;DBG_UART_ENABLE=1;DBG_PIN_ENABLE=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard>C17</CLanguageStandard>
       <CPPLanguageStandard>CPP1Z</CPPLanguageStandard>
@@ -80,20 +80,10 @@
   </ImportGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Config\startup_stm32h750xx.c" />
-    <ClCompile Include="..\..\Core\Scr\hooks.c" />
     <ClCompile Include="..\..\Core\Scr\main.c" />
     <ClCompile Include="..\..\Core\Scr\stm32h7xx_hal_msp.c" />
     <ClCompile Include="..\..\Core\Scr\stm32h7xx_it.c" />
     <ClCompile Include="..\..\Core\Scr\system_stm32h7xx.c" />
-    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\croutine.c" />
-    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\event_groups.c" />
-    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\list.c" />
-    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\portable\GCC\ARM_CM7\r0p1\port.c" />
-    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\portable\MemMang\heap_2.c" />
-    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\queue.c" />
-    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\stream_buffer.c" />
-    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\tasks.c" />
-    <ClCompile Include="..\..\Libraries\FreeRTOS\Source\timers.c" />
     <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal.c" />
     <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc.c" />
     <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc_ex.c" />
@@ -207,22 +197,12 @@
     <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_tim.c" />
     <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_usart.c" />
     <ClCompile Include="..\..\Libraries\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_usb.c" />
-    <ClCompile Include="..\..\Utilities\cmd_trmnl\cmd_freertos_cntrl.c" />
     <ClCompile Include="..\..\Utilities\cmd_trmnl\cmd_hdl.c" />
     <ClCompile Include="..\..\Utilities\cmd_trmnl\cmd_hlp.c" />
     <ClCompile Include="..\..\Utilities\cmd_trmnl\cmd_process.c" />
-    <ClCompile Include="..\..\Utilities\CRC\CRC16.c" />
-    <ClCompile Include="..\..\Utilities\EEPROM_Emul\Core\eeprom_emul.c" />
-    <ClCompile Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\flash_interface.c" />
-    <ClCompile Include="..\..\Utilities\quadspi\cmd_qspi_flash.c" />
-    <ClCompile Include="..\..\Utilities\quadspi\drv_qspi_w25q64.c" />
-    <ClCompile Include="..\..\Utilities\quadspi\task_qspi_flash.c" />
-    <ClCompile Include="..\..\Utilities\quadspi\test_qspi_flash.c" />
-    <ClCompile Include="..\..\Utilities\quadspi\w25q64jvs.c" />
     <ClCompile Include="..\..\Utilities\uart_dbg\pin_dbg.c" />
     <ClCompile Include="..\..\Utilities\uart_dbg\printf_dbg.c" />
     <ClCompile Include="..\..\Utilities\uart_dbg\uart_dbg.c" />
-    <ClInclude Include="..\..\Config\FreeRTOSConfig.h" />
     <ClInclude Include="..\..\Config\stm32h7xx_hal_conf.h" />
     <ClInclude Include="..\..\Core\Inc\main.h" />
     <ClInclude Include="..\..\Core\Inc\stm32h7xx_it.h" />
@@ -235,24 +215,6 @@
     <ClInclude Include="..\..\Libraries\CMSIS\Core\Include\mpu_armv7.h" />
     <ClInclude Include="..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h" />
     <ClInclude Include="..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\croutine.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\deprecated_definitions.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\event_groups.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\FreeRTOS.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\list.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\message_buffer.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\mpu_prototypes.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\mpu_wrappers.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\portable.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\projdefs.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\queue.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\semphr.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\StackMacros.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\stack_macros.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\stream_buffer.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\task.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\include\timers.h" />
-    <ClInclude Include="..\..\Libraries\FreeRTOS\Source\portable\GCC\ARM_CM7\r0p1\portmacro.h" />
     <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h" />
     <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_adc.h" />
     <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_adc_ex.h" />
@@ -272,20 +234,9 @@
     <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dfsdm_ex.h" />
     <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dma.h" />
     <ClInclude Include="..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32_assert_template.h" />
-    <ClInclude Include="..\..\Utilities\cmd_trmnl\cmd_freertos_cntrl.h" />
     <ClInclude Include="..\..\Utilities\cmd_trmnl\cmd_hdl.h" />
     <ClInclude Include="..\..\Utilities\cmd_trmnl\cmd_hlp.h" />
     <ClInclude Include="..\..\Utilities\cmd_trmnl\cmd_process.h" />
-    <ClInclude Include="..\..\Utilities\CRC\CRC16.h" />
-    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Core\eeprom_emul.h" />
-    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Core\eeprom_emul_types.h" />
-    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\eeprom_emul_conf.h" />
-    <ClInclude Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\flash_interface.h" />
-    <ClInclude Include="..\..\Utilities\quadspi\cmd_qspi_flash.h" />
-    <ClInclude Include="..\..\Utilities\quadspi\drv_qspi_w25q64.h" />
-    <ClInclude Include="..\..\Utilities\quadspi\task_qspi_flash.h" />
-    <ClInclude Include="..\..\Utilities\quadspi\test_qspi_flash.h" />
-    <ClInclude Include="..\..\Utilities\quadspi\w25q64jvs.h" />
     <ClInclude Include="..\..\Utilities\uart_dbg\pin_dbg.h" />
     <ClInclude Include="..\..\Utilities\uart_dbg\printf_dbg.h" />
     <ClInclude Include="..\..\Utilities\uart_dbg\uart_dbg.h" />

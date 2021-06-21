@@ -150,16 +150,6 @@
         <ExplicitEndOfFLASH>0</ExplicitEndOfFLASH>
         <ExplicitEndOfRAM>0</ExplicitEndOfRAM>
       </InstrumentedFunctions>
-      <RTOSFeatures>
-        <RTOSFeatureSetting>
-          <FeatureID>com.sysprogs.analysis.thread.timing</FeatureID>
-          <Enabled>true</Enabled>
-        </RTOSFeatureSetting>
-        <RTOSFeatureSetting>
-          <FeatureID>com.sysprogs.analysis.freertos.queues</FeatureID>
-          <Enabled>true</Enabled>
-        </RTOSFeatureSetting>
-      </RTOSFeatures>
     </DynamicAnalysisSettings>
     <EndOfStackSymbol>_estack</EndOfStackSymbol>
     <TimestampProviderTicksPerSecond>0</TimestampProviderTicksPerSecond>

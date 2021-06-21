@@ -20,12 +20,10 @@
 #include "printf_dbg.h"
 #include "pin_dbg.h"
 #include "cmd_process.h"
-#include "flash_interface.h"
 
 volatile const char __version__[] = "H750VB";    
 volatile const char __date__[] = __DATE__;
 volatile const char __time__[] = __TIME__;
-
 
 
 /**
@@ -33,14 +31,13 @@ volatile const char __time__[] = __TIME__;
  * @param  None
  * @retval None
  */
-void system_thread(void *arg)
+void system_function(void)
 { 
-    #define CODE_STORE_VAR  (5589)
-	uint32_t temp_var = 0;
 	
 	/*Инициализация аппаратной части отладки */
     hal_debug_uart_init();
 	hal_debug_pin_init();
+	terminal_init();
 	
 	// Информационная шапка программы
 	printf("______________________________________________\r\n");
@@ -51,16 +48,9 @@ void system_thread(void *arg)
 	printf("   CPU FREQ = %.9lu Hz \r\n", SystemCoreClock);  
 	printf("______________________________________________\r\n"); 
 	
-	/*Инициализация Emul EEPROM */
-	Init_Emul_EEPROM();
-	/*Чтение даннных */
-	temp_var = StartLoadEmuleEEPROM(CODE_STORE_VAR, 193);	
-	
-	//Инициализация задачи диагностического терминала 
-	xTaskCreate(terminal_task, (const char*)"CmdTrmnl", configMINIMAL_STACK_SIZE * 5, NULL, TreadPrioNormal, NULL);
 	
 	for (;;) {
-		vTaskDelay(1000);
+		terminal_cntrl();
 	}
 }
 
@@ -89,10 +79,8 @@ int main(void)
 	CPU_CACHE_Enable();	
 	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
 	HAL_Init();	
-	/* Init thread */
-	xTaskCreate(system_thread, (const char*)"SysTask", configMINIMAL_STACK_SIZE * 2, NULL, TreadPrioNormal, NULL);	
-	/* Start scheduler */
-	vTaskStartScheduler();  
+	/* Start system */
+	system_function();
 	/* We should never get here as control is now taken by the scheduler */
 	NVIC_SystemReset();
 	return 0;
