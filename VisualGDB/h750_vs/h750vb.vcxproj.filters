@@ -103,6 +103,9 @@
     <Filter Include="Utilites\EEPROM_Emul\Porting\W25Q64JVS">
       <UniqueIdentifier>{b2639ea7-4f76-47f9-900e-7d510b63b6a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilites\gen_cntrl">
+      <UniqueIdentifier>{2a00751e-eb2b-4b34-9b5c-0482bec3f6e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="h750vb-Debug.vgdbsettings">
@@ -328,6 +331,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\flash_interface.h">
       <Filter>Utilites\EEPROM_Emul\Porting\W25Q64JVS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Utilities\gen_cntrl\gen_cntrl.h">
+      <Filter>Utilites\gen_cntrl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -747,6 +753,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\flash_interface.c">
       <Filter>Utilites\EEPROM_Emul\Porting\W25Q64JVS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Utilities\gen_cntrl\gen_cntrl.c">
+      <Filter>Utilites\gen_cntrl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

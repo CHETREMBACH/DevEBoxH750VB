@@ -96,40 +96,6 @@ void SystemClock_Config(void)
 	{
 		Error_Handler();
 	}
-	
-	RCC_PeriphCLKInitTypeDef Periph2clkInitStruct = { 0 };
-	
-	/** Enables PLL2P clock output
-	*/
-	__HAL_RCC_PLL2CLKOUT_ENABLE(RCC_PLL2_DIVP);
-	/** Initializes the peripherals clock
-	*/
-	Periph2clkInitStruct.PLL2.PLL2M = 25;
-	Periph2clkInitStruct.PLL2.PLL2N = 480;
-	Periph2clkInitStruct.PLL2.PLL2P = 2;
-	Periph2clkInitStruct.PLL2.PLL2Q = 2;
-	Periph2clkInitStruct.PLL2.PLL2R = 2;
-	Periph2clkInitStruct.PLL2.PLL2RGE = RCC_PLL2VCIRANGE_0;
-	Periph2clkInitStruct.PLL2.PLL2VCOSEL = RCC_PLL2VCOWIDE;
-	Periph2clkInitStruct.PLL2.PLL2FRACN = 4096;
-	if (HAL_RCCEx_PeriphCLKConfig(&Periph2clkInitStruct) != HAL_OK)
-	{
-		Error_Handler();
-	}	
-	
-	HAL_RCC_MCOConfig(RCC_MCO2, RCC_MCO2SOURCE_PLL2PCLK, RCC_MCODIV_4);	
-	
-	GPIO_InitTypeDef GPIO_InitStruct = { 0 };	
-	
-
-	/*Configure GPIO pin : PC9 */
-	GPIO_InitStruct.Pin = GPIO_PIN_9;
-	GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-	GPIO_InitStruct.Pull = GPIO_NOPULL;
-	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-	GPIO_InitStruct.Alternate = GPIO_AF0_MCO;
-	HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);	
-	
 }
 
 /**
