@@ -42,7 +42,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../../Core/Inc;../../Libraries/CMSIS/Core/Include;../../Libraries/CMSIS/Device/ST/STM32H7xx/Include;../../Libraries/FreeRTOS/Source/include;../../Libraries/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1;../../Libraries/STM32H7xx_HAL_Driver/Inc;../../Utilities\cmd_trmnl;../../Utilities\uart_dbg;../../Utilities/quadspi;../../Utilities/EEPROM_Emul/Core;../../Utilities/EEPROM_Emul/Porting/W25Q64JVS;../../Config;../../Utilities/CRC;../../Libraries/STM32H7xx_HAL_Driver/Src;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Core/Inc;../../Libraries/CMSIS/Core/Include;../../Libraries/CMSIS/Device/ST/STM32H7xx/Include;../../Libraries/FreeRTOS/Source/include;../../Libraries/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1;../../Libraries/STM32H7xx_HAL_Driver/Inc;../../Utilities\cmd_trmnl;../../Utilities\uart_dbg;../../Utilities/quadspi;../../Utilities/EEPROM_Emul/Core;../../Utilities/EEPROM_Emul/Porting/W25Q64JVS;../../Config;../../Utilities/CRC;../../Libraries/STM32H7xx_HAL_Driver/Src;../../Utilities/gen_cntrl;;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>flash_layout;HSE_VALUE=25000000;STM32H750xx;USE_FREERTOS;DEBUG=1;USE_FULL_LL_DRIVER;DBG_UART_ENABLE=1;DBG_PIN_ENABLE=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard>C17</CLanguageStandard>
@@ -214,6 +214,7 @@
     <ClCompile Include="..\..\Utilities\CRC\CRC16.c" />
     <ClCompile Include="..\..\Utilities\EEPROM_Emul\Core\eeprom_emul.c" />
     <ClCompile Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\flash_interface.c" />
+    <ClCompile Include="..\..\Utilities\gen_cntrl\gen_cntrl.c" />
     <ClCompile Include="..\..\Utilities\quadspi\cmd_qspi_flash.c" />
     <ClCompile Include="..\..\Utilities\quadspi\drv_qspi_w25q64.c" />
     <ClCompile Include="..\..\Utilities\quadspi\task_qspi_flash.c" />
@@ -281,6 +282,7 @@
     <ClInclude Include="..\..\Utilities\EEPROM_Emul\Core\eeprom_emul_types.h" />
     <ClInclude Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\eeprom_emul_conf.h" />
     <ClInclude Include="..\..\Utilities\EEPROM_Emul\Porting\W25Q64JVS\flash_interface.h" />
+    <ClInclude Include="..\..\Utilities\gen_cntrl\gen_cntrl.h" />
     <ClInclude Include="..\..\Utilities\quadspi\cmd_qspi_flash.h" />
     <ClInclude Include="..\..\Utilities\quadspi\drv_qspi_w25q64.h" />
     <ClInclude Include="..\..\Utilities\quadspi\task_qspi_flash.h" />

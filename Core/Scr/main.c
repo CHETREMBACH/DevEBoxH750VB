@@ -21,11 +21,11 @@
 #include "pin_dbg.h"
 #include "cmd_process.h"
 #include "flash_interface.h"
+#include "gen_cntrl.h"
 
 volatile const char __version__[] = "H750VB";    
 volatile const char __date__[] = __DATE__;
 volatile const char __time__[] = __TIME__;
-
 
 
 /**
@@ -58,6 +58,10 @@ void system_thread(void *arg)
 	
 	//Инициализация задачи диагностического терминала 
 	xTaskCreate(terminal_task, (const char*)"CmdTrmnl", configMINIMAL_STACK_SIZE * 5, NULL, TreadPrioNormal, NULL);
+	
+	/* Инициализация и запуск задачи контроля генератора. */
+	InitCntrlGenTask();	
+	
 	
 	for (;;) {
 		vTaskDelay(1000);
