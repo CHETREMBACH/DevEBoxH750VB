@@ -17,12 +17,10 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 /* Kernel includes. */
-#include "printf_dbg.h"
 #include "pin_dbg.h"
 #include "cmd_process.h"
 #include "flash_interface.h"
 #include "gen_cntrl.h"
-#include "usb_device.h"
 
 volatile const char __version__[] = "H750VB";    
 volatile const char __date__[] = __DATE__;
@@ -39,8 +37,10 @@ void system_thread(void *arg)
 	uint32_t temp_var = 0;
 	
 	/*Инициализация аппаратной части отладки */
-    hal_debug_uart_init();
+	dbgHardSetup();
+#if  (DBG_PIN_ENABLE == 1)	
 	hal_debug_pin_init();
+#endif
 	
 	// Информационная шапка программы
 	printf("______________________________________________\r\n");
@@ -61,8 +61,7 @@ void system_thread(void *arg)
 	
 	/* Инициализация и запуск задачи контроля генератора. */
 	InitCntrlGenTask();	
-	
-	MX_USB_DEVICE_Init();	
+
 	
 	for (;;) {
 		vTaskDelay(1000);

@@ -29,7 +29,7 @@ extern "C" {
   * @param  None
   * @retval None
   */
-void hal_debug_uart_init(void);
+void dbgHardSetup(void);
 
 #ifdef __cplusplus
 }
