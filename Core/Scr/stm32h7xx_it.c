@@ -114,4 +114,14 @@ void SysTick_Handler(void)
 /* please refer to the startup file (startup_stm32h7xx.s).                    */
 /******************************************************************************/
 
+/* External variables --------------------------------------------------------*/
+extern PCD_HandleTypeDef hpcd_USB_OTG_FS;
+/**
+  * @brief This function handles USB On The Go FS global interrupt.
+  */
+void OTG_FS_IRQHandler(void)
+{
+	HAL_PCD_IRQHandler(&hpcd_USB_OTG_FS);
+}
+
 /************************ (C) COPYRIGHT 2020 OneTiOne *****END OF FILE****/

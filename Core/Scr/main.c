@@ -22,11 +22,11 @@
 #include "cmd_process.h"
 #include "flash_interface.h"
 #include "gen_cntrl.h"
+#include "usb_device.h"
 
 volatile const char __version__[] = "H750VB";    
 volatile const char __date__[] = __DATE__;
 volatile const char __time__[] = __TIME__;
-
 
 /**
  * @brief  Start Thread 
@@ -55,13 +55,14 @@ void system_thread(void *arg)
 	Init_Emul_EEPROM();
 	/*Чтение даннных */
 	temp_var = StartLoadEmuleEEPROM(CODE_STORE_VAR, 193);	
-	
+			
 	//Инициализация задачи диагностического терминала 
 	xTaskCreate(terminal_task, (const char*)"CmdTrmnl", configMINIMAL_STACK_SIZE * 5, NULL, TreadPrioNormal, NULL);
 	
 	/* Инициализация и запуск задачи контроля генератора. */
 	InitCntrlGenTask();	
 	
+	MX_USB_DEVICE_Init();	
 	
 	for (;;) {
 		vTaskDelay(1000);

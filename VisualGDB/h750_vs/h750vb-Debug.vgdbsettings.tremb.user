@@ -42,6 +42,10 @@
     <Suggestions>
       <HardwareRegisterFilters />
     </Suggestions>
+    <LiveVariablePreferences>
+      <ViewMode>SpecificVariables</ViewMode>
+      <FavoritesOnly>false</FavoritesOnly>
+    </LiveVariablePreferences>
     <HardwareRegisters />
   </DebugPreferences>
 </VisualGDBUserPreferences>
