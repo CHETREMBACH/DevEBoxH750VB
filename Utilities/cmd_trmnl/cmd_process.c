@@ -467,6 +467,8 @@ void terminal_data_processing(char ch) {
   }
 }
 
+
+#if ( DBG_UART_ENABLE == 1)
 /**
   * @brief  Получение  одного символа из буфера UART.
   * @param  uint8_t data - транслируемый символ
@@ -474,7 +476,17 @@ void terminal_data_processing(char ch) {
   *                  0 - принятых данных нет     
   */
 uint8_t recv_uart(uint8_t *data);
-static uint8_t rcv_dat = 0;
+#endif 	/* DBG_UART_ENABLE == 1 */
+
+#if ( DBG_USB_ENABLE == 1)
+/**
+  * @brief  Получение  одного символа из буфера USB.
+  * @param  uint8_t data - транслируемый символ
+  * @retval uint8_t  !0 - есть принятые данные
+  *                  0 - принятых данных нет     
+  */
+uint8_t recv_usb(uint8_t *data);
+#endif 	/* DBG_USB_ENABLE == 1 */
 
 /**
  * @brief  функция полинга терминала команд
@@ -482,7 +494,13 @@ static uint8_t rcv_dat = 0;
  * @retval none
  */
 void terminal_cntrl(void) {	
-	while (recv_uart(&rcv_dat))  terminal_data_processing(rcv_dat);
+ uint8_t rcv_dat;	
+#if ( DBG_UART_ENABLE == 1)	
+ while (recv_uart(&rcv_dat))  terminal_data_processing(rcv_dat);
+#endif 	/* DBG_UART_ENABLE == 1 */
+#if ( DBG_USB_ENABLE == 1)	
+ while (recv_usb(&rcv_dat))  terminal_data_processing(rcv_dat);	
+#endif 	/* DBG_USB_ENABLE == 1 */
 }
 
 /**

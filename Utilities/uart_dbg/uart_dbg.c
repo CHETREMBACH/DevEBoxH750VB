@@ -18,15 +18,6 @@
 
 #if ( DBG_UART_ENABLE == 1)
 
-#include "stm32h7xx_ll_usart.h"
-#include "stm32h7xx_ll_rcc.h"
-#include "stm32h7xx_ll_gpio.h"
-#include "stm32h7xx_ll_bus.h"
-
-#define DBG_BaudRate     	            921600 //1843200 //115200 // 10800000 //460800 // 230400 //38400 //
-
-/* Размер буфера диагностических сообщений */
-#define DBG_UART_MAX_SIZE_BUFF       (8000) 
 /* Буфер для диагностического сообщения */
 volatile uint8_t buf_dbg[DBG_UART_MAX_SIZE_BUFF];
 /* Индекс записи сообщения */
@@ -34,8 +25,6 @@ uint16_t index_wr_buf_mes = 0;
 /* Индекс чтения сообщения */
 volatile uint16_t index_rd_buf_mes = 0;
 
-/* Размер буфера приема команд */
-#define DBG_UART_MAX_SIZE_CMD_BUFF   (50)
 /* Буфер для приема команды */
 volatile uint8_t buf_cmd[DBG_UART_MAX_SIZE_CMD_BUFF];
 /* Индекс записи команды */
@@ -43,9 +32,8 @@ volatile uint16_t index_wr_buf_cmd = 0;
 /* Индекс чтения команды */
 uint16_t index_rd_buf_cmd = 0;
 
-
 /**
-  * @brief  Инициализация аппаратной части отладки
+  * @brief  Инициализация аппаратной части uart отладки
   * @param  None
   * @retval None
   */
@@ -128,53 +116,6 @@ uint8_t recv_uart(uint8_t *data)
 	}
 }
 
-/**
-  * @brief  Передача одного символа в UART.
-  * @param  uint8_t data - транслируемый символ
-  * @retval None
-  */
-void send_uart(uint8_t data)
-{
-	if (index_rd_buf_mes == index_wr_buf_mes)
-	{
-		/* Данных в буфере нет - включение передачи */
-        /* Загружаем символ в буфер */    
-		buf_dbg[index_wr_buf_mes] = data; 
-    
-		/* Проверка на переполнение  */
-		if (index_wr_buf_mes < (DBG_UART_MAX_SIZE_BUFF - 1))
-		{
-			/* Увеличение индекса */
-			index_wr_buf_mes++;
-		} 
-		else
-		{
-			/* Организация циклического буфера */  
-			index_wr_buf_mes = 0;    
-		}    
-    
-		/* включаем прерывание по передаче */
-		LL_USART_EnableIT_TXE(USART3); 
- 
-	}
-	else
-	{
-		/* Есть данные загружаем данные и инкрементируем индекс */
-        /* Загружаем символ в буфер */    
-		buf_dbg[index_wr_buf_mes] = data;  
-		/* Проверка на переполнение  */
-		if (index_wr_buf_mes < (DBG_UART_MAX_SIZE_BUFF - 1))
-		{
-			/* Увеличение индекса */
-			index_wr_buf_mes++;
-		} 
-		else
-		{
-			/* Организация циклического буфера */  
-			index_wr_buf_mes = 0;    
-		}        
-	}
-}
 
 /**
   * @brief  Прерывание DBG_UART.
@@ -223,37 +164,6 @@ void USART3_IRQHandler(void)
 		} 
 	}
 }
-
-#else
-	
-/**
-  * @brief  Инициализация аппаратной части отладки
-  * @param  None
-  * @retval None
-  */
-void hal_debug_uart_init(void){	}
-	
-/**
-  * @brief  Передача одного символа в UART.
-  * @param  uint8_t data - транслируемый символ
-  * @retval None
-  */
-void send_uart(uint8_t data)
-{
-	data = data;
-}		
-
-/**
-  * @brief  Получение  одного символа из буфера UART.
-  * @param  uint8_t data - транслируемый символ
-  * @retval uint8_t  !0 - есть принятые данные
-  *                  0 - принятых данных нет     
-  */
-uint8_t recv_uart(uint8_t *data)	
-{
-	data[0] = 0;
-	return 0;
-}	
 	
 #endif	
 /******************* (C) COPYRIGHT 2020 OneTiOne  *****END OF FILE****/

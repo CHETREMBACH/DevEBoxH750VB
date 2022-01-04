@@ -134,7 +134,7 @@ void CalcFactorGen(uint32_t freq, uint32_t* div_p,uint32_t* div_mco, uint32_t* f
 	const double freq_size_f = 400000000.0/400.0/8192.0;		
 	
 	/* Ограничение максимальная частота */
-	if (freq > 200000000) freq = 200000000;
+	if (freq > 120000000) freq = 120000000;
    
 	/* Ограничение минимальная частота */
 	if (freq < 250000) freq = 250000;	

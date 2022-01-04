@@ -244,6 +244,16 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
   /* USER CODE END 5 */
 }
 
+
+#if ( DBG_USB_ENABLE == 1)
+/**
+  * @brief  Прием данных из USB.
+  * @param  none
+  * @retval none 
+  */
+void usbDebugRecv(uint8_t* Buf, uint32_t *Len);
+#endif 	/* DBG_USB_ENABLE == 1 */
+
 /**
   * @brief  Data received over USB OUT endpoint are sent over CDC interface
   *         through this function.
@@ -263,7 +273,9 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
-  CDC_Transmit_FS(Buf, *Len);  
+#if ( DBG_USB_ENABLE == 1)
+  usbDebugRecv(Buf, Len);  
+#endif 	/* DBG_USB_ENABLE == 1 */
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
   return (USBD_OK);
   /* USER CODE END 6 */

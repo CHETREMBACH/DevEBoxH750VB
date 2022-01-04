@@ -58,9 +58,6 @@
     <Filter Include="Libraries\STM32F4xx_HAL_Driver\Src">
       <UniqueIdentifier>{4dd2cbcd-57b7-4045-8548-237c08c03686}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utilites\uart_dbg">
-      <UniqueIdentifier>{8e466718-7baf-43b6-ba14-9edaca6b162e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Libraries\FreeRTOS\Source\portable\GCC\ARM_CM7">
       <UniqueIdentifier>{5ffb459f-893b-4f17-a463-e4eea2573453}</UniqueIdentifier>
     </Filter>
@@ -138,6 +135,9 @@
     </Filter>
     <Filter Include="Libraries\STM32_USB_Device_Library\Core\Src">
       <UniqueIdentifier>{975e5590-e665-45d8-8cea-4c3f8bd2731b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilites\dbg">
+      <UniqueIdentifier>{8e466718-7baf-43b6-ba14-9edaca6b162e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -291,10 +291,10 @@
       <Filter>Libraries\STM32F4xx_HAL_Driver\Inc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Utilities\uart_dbg\printf_dbg.h">
-      <Filter>Utilites\uart_dbg</Filter>
+      <Filter>Utilites\dbg</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Utilities\uart_dbg\uart_dbg.h">
-      <Filter>Utilites\uart_dbg</Filter>
+      <Filter>Utilites\dbg</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Libraries\FreeRTOS\Source\portable\GCC\ARM_CM7\r0p1\portmacro.h">
       <Filter>Libraries\FreeRTOS\Source\portable\GCC\ARM_CM7\r0p1</Filter>
@@ -327,7 +327,7 @@
       <Filter>Core\Inc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Utilities\uart_dbg\pin_dbg.h">
-      <Filter>Utilites\uart_dbg</Filter>
+      <Filter>Utilites\dbg</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Utilities\quadspi\cmd_qspi_flash.h">
       <Filter>Utilites\quadspi</Filter>
@@ -391,6 +391,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h">
       <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Utilities\uart_dbg\usb_dbg.h">
+      <Filter>Utilites\dbg</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -758,10 +761,10 @@
       <Filter>Libraries\STM32F4xx_HAL_Driver\Src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Utilities\uart_dbg\printf_dbg.c">
-      <Filter>Utilites\uart_dbg</Filter>
+      <Filter>Utilites\dbg</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Utilities\uart_dbg\uart_dbg.c">
-      <Filter>Utilites\uart_dbg</Filter>
+      <Filter>Utilites\dbg</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Libraries\FreeRTOS\Source\portable\GCC\ARM_CM7\r0p1\port.c">
       <Filter>Libraries\FreeRTOS\Source\portable\GCC\ARM_CM7\r0p1</Filter>
@@ -782,7 +785,7 @@
       <Filter>Core\Scr</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Utilities\uart_dbg\pin_dbg.c">
-      <Filter>Utilites\uart_dbg</Filter>
+      <Filter>Utilites\dbg</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Utilities\quadspi\cmd_qspi_flash.c">
       <Filter>Utilites\quadspi</Filter>
@@ -837,6 +840,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Libraries\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c">
       <Filter>Libraries\STM32_USB_Device_Library\Class\CDC\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Utilities\uart_dbg\usb_dbg.c">
+      <Filter>Utilites\dbg</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
